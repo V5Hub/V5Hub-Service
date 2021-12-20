@@ -1,0 +1,26 @@
+spring:
+  flyway:
+    url: jdbc:mysql://127.0.0.1:3306/volunteer?serverTimezone=UTC&useSSL=false
+    user: root
+    password: admin
+    encoding: UTF-8
+    enabled: true
+    baseline-on-migrate: true
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/volunteer
+    username: root
+    password: admin
+
+mybatis-plus:
+  mapper-locations: classpath:mappers/*.xml
+  configuration:
+    #将带有下划线的表字段映射为驼峰格式的实体类属性
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+logging:
+  level:
+    org:
+      springframework:
+        boot:
+          autoconfigure=INFO:
