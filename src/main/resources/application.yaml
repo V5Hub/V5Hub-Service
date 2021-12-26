@@ -4,7 +4,7 @@ spring:
     user: root
     password: admin
     encoding: UTF-8
-    enabled: false
+    enabled: true
     baseline-on-migrate: true
     clean-disabled: true
   datasource:
