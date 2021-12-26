@@ -4,8 +4,9 @@ spring:
     user: root
     password: admin
     encoding: UTF-8
-    enabled: true
+    enabled: false
     baseline-on-migrate: true
+    clean-disabled: true
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/volunteer
     username: root
@@ -18,9 +19,10 @@ mybatis-plus:
     map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
+
 logging:
   level:
     org:
       springframework:
         boot:
-          autoconfigure=INFO:
+          autoconfigure: ERROR

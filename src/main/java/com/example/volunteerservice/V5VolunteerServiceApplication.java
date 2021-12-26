@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @Slf4j
 @SpringBootApplication
-@MapperScan("com/example/mapper")
+@MapperScan("com/example/volunteerservice/mapper")
 public class V5VolunteerServiceApplication {
 
     public static void main(String[] args) {
