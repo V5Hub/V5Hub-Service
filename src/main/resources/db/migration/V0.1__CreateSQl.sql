@@ -20,8 +20,8 @@ CREATE TABLE  IF NOT EXISTS user (
 CREATE TABLE IF NOT EXISTS activity (
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(30) NOT NULL,
-    start_time TIME NOT NULL,
-    end_time TIME NOT NULL,
+    start_time TIME,
+    end_time TIME,
     position VARCHAR(30),
     sponsor_id INT NOT NULL,
     description TEXT,
