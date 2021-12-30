@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS register (
     student_id VARCHAR(10),
     email VARCHAR(30),
     phone_number VARCHAR(11),
-    class VARCHAR(11),
+    user_class VARCHAR(11),
     college VARCHAR(30),
     FOREIGN KEY (activity_id) REFERENCES activity (id),
     FOREIGN KEY (applicant_id) REFERENCES user (id),
