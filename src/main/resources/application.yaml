@@ -2,7 +2,7 @@ spring:
   flyway:
     url: jdbc:mysql://127.0.0.1:3306/volunteer?serverTimezone=UTC&useSSL=false
     user: root
-    password: admin
+    password: d21700499
     encoding: UTF-8
     enabled: true
     baseline-on-migrate: true
@@ -10,7 +10,7 @@ spring:
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/volunteer
     username: root
-    password: admin
+    password: d21700499
 
 mybatis-plus:
   mapper-locations: classpath:mappers/*.xml
