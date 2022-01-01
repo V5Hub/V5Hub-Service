@@ -1,9 +1,6 @@
-package com.example.volunteerservice.mapper;
+package com.V5Hub.volunteerservice.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.example.volunteerservice.module.Activity;
-import com.example.volunteerservice.module.Register;
-import com.example.volunteerservice.module.User;
+import com.V5Hub.volunteerservice.module.Register;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
 
@@ -27,8 +24,8 @@ public interface RegisterMapper{
     @Select("SELECT * FROM register")
     @Results({
             @Result(id = true, property = "id", column = "id"),
-            @Result(property = "activity", column = "activity_id", one = @One(select = "com.example.volunteerservice.mapper.ActivityMapper.selectById", fetchType = FetchType.LAZY)),
-            @Result(property = "user", column = "applicant_id", one = @One(select = "com.example.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
+            @Result(property = "activity", column = "activity_id", one = @One(select = "com.V5Hub.volunteerservice.mapper.ActivityMapper.selectById", fetchType = FetchType.LAZY)),
+            @Result(property = "user", column = "applicant_id", one = @One(select = "com.V5Hub.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
             @Result(property = "name", column = "name"),
             @Result(property = "studentId", column = "student_id"),
             @Result(property = "email", column = "email"),
@@ -47,8 +44,8 @@ public interface RegisterMapper{
     @Select("SELECT * FROM register where id = #{id}")
     @Results({
             @Result(id = true, property = "id", column = "id"),
-            @Result(property = "activity", column = "activity_id", one = @One(select = "com.example.volunteerservice.mapper.ActivityMapper.selectById", fetchType = FetchType.LAZY)),
-            @Result(property = "user", column = "applicant_id", one = @One(select = "com.example.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
+            @Result(property = "activity", column = "activity_id", one = @One(select = "com.V5Hub.volunteerservice.mapper.ActivityMapper.selectById", fetchType = FetchType.LAZY)),
+            @Result(property = "user", column = "applicant_id", one = @One(select = "com.V5Hub.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
             @Result(property = "name", column = "name"),
             @Result(property = "studentId", column = "student_id"),
             @Result(property = "email", column = "email"),

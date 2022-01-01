@@ -1,4 +1,4 @@
-package com.example.volunteerservice;
+package com.V5Hub.volunteerservice;
 
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @Slf4j
 @SpringBootApplication
-@MapperScan("com/example/volunteerservice/mapper")
+@MapperScan("com/V5Hub/volunteerservice/mapper")
 public class V5VolunteerServiceApplication {
 
     public static void main(String[] args) {

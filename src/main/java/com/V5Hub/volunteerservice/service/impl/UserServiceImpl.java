@@ -1,6 +1,6 @@
-package com.example.volunteerservice.service.impl;
+package com.V5Hub.volunteerservice.service.impl;
 
-import com.example.volunteerservice.service.UserService;
+import com.V5Hub.volunteerservice.service.UserService;
 
 /**
  * @author WarmCongee

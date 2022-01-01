@@ -1,9 +1,8 @@
-package com.example.volunteerservice.module;
+package com.V5Hub.volunteerservice.module;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.relational.core.mapping.Column;
 
 
 import java.util.Date;
