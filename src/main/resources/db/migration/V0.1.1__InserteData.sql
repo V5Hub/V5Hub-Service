@@ -5,6 +5,9 @@ VALUES (1,'test1','2020302029','1979557180@qq.com','12345678901','test1','软件
        (3,'test3','2020302031','test3@gmail.com','12345678901','test3','计算机学院',false),
        (4,'test4','2020302032','test4@gmail.com','12345678901','test4','自动化学院',false);
 
+INSERT INTO manager(manager_id)
+    VALUE (1),(2);
+
 INSERT INTO activity(id,name,position,sponsor_id,description,state_type)
 VALUE (1,'程序星大赛','实验大楼',1,'编程','passed'),
       (2,'足基元旦杯','实验大楼',2,'编程','reviewing'),

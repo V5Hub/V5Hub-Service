@@ -17,6 +17,12 @@ CREATE TABLE  IF NOT EXISTS user (
     PRIMARY KEY (id)
 ) DEFAULT CHARSET=utf8;
 
+CREATE TABLE  IF NOT EXISTS manager (
+    manager_id INT NOT NULL,
+    FOREIGN KEY (manager_id) REFERENCES user (id),
+    PRIMARY KEY (manager_id)
+) DEFAULT CHARSET=utf8;
+
 CREATE TABLE IF NOT EXISTS activity (
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(30) NOT NULL,

@@ -17,11 +17,11 @@ public class Register {
     /**
      * 活动ID
      */
-    private int activityId;
+    private Activity activity;
     /**
      * 报名者ID
      */
-    private int applicantId;
+    private User user;
     /**
      * 报名者姓名
      */

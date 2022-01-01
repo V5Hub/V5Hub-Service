@@ -35,7 +35,7 @@ public class Activity {
     /**
      * 活动发起人id
      */
-    private int sponsorId;
+    private User user;
     /**
      * 活动描述
      */
