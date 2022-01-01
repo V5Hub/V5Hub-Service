@@ -96,7 +96,7 @@ public interface ActivityMapper {
             "description = #{description},"+
             "picture = #{picture},"+
             "state_type = #{stateType} "+
-            "WHERE id = #{id}"+
+            "WHERE id = #{activity.id}"+
             " </script>")
     int update(Activity activity);
 
