@@ -1,10 +1,110 @@
 package com.example.volunteerservice.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.example.volunteerservice.module.Activity;
 import com.example.volunteerservice.module.Register;
 import com.example.volunteerservice.module.User;
-import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.mapping.FetchType;
 
+import java.util.List;
+
+
+/**
+ * 实现数据库中register表与Register类的映射
+ *
+ * @see Register
+ * @version 1.0
+ */
 @Mapper
-public interface RegisterMapper extends BaseMapper<Register> {
+public interface RegisterMapper{
+
+    /**
+     * 读取register表中的所有行，并映射为Register对象
+     * @param
+     * @return 包含所有register的Register列表
+     */
+    @Select("SELECT * FROM register")
+    @Results({
+            @Result(id = true, property = "id", column = "id"),
+            @Result(property = "activity", column = "activity_id", one = @One(select = "com.example.volunteerservice.mapper.ActivityMapper.selectById", fetchType = FetchType.LAZY)),
+            @Result(property = "user", column = "applicant_id", one = @One(select = "com.example.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
+            @Result(property = "name", column = "name"),
+            @Result(property = "studentId", column = "student_id"),
+            @Result(property = "email", column = "email"),
+            @Result(property = "phoneNumber", column = "phone_number"),
+            @Result(property = "userClass", column = "user_class"),
+            @Result(property = "college", column = "college"),
+    })
+    List<Register> selectAll();
+
+
+    /**
+     * 查找对应id的活动
+     * @param id 活动id
+     * @return id=#{id}的Register对象
+     */
+    @Select("SELECT * FROM register where id = #{id}")
+    @Results({
+            @Result(id = true, property = "id", column = "id"),
+            @Result(property = "activity", column = "activity_id", one = @One(select = "com.example.volunteerservice.mapper.ActivityMapper.selectById", fetchType = FetchType.LAZY)),
+            @Result(property = "user", column = "applicant_id", one = @One(select = "com.example.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
+            @Result(property = "name", column = "name"),
+            @Result(property = "studentId", column = "student_id"),
+            @Result(property = "email", column = "email"),
+            @Result(property = "phoneNumber", column = "phone_number"),
+            @Result(property = "userClass", column = "user_class"),
+            @Result(property = "college", column = "college"),
+    })
+    Register selectById(@Param("id") int id);
+
+    /**
+     * 把{@link Register}对象插入到register表中。
+     *
+     * @param register 要插入的{@link Register}对象。
+     * @return 成功插入到表中的行的数目，若插入失败或插入被忽略，则返回0。
+     */
+    @Insert("<script>"+
+            "INSERT IGNORE INTO "+
+            "register(id, activity_id, applicant_id, name, student_id, email, phone_number, user_class, college) "+
+            "VALUES(#{id}, " +
+            "<if test='#{activity}==null'> NULL </if> <if test='#{activity}!=null'>#{activity.id}</if>, " +
+            "<if test='#{user}==null'> NULL </if> <if test='#{user}!=null'>#{user.id}</if>, " +
+            "#{name}, #{studentId}, " +
+            "#{email}, " +
+            "#{phoneNumber}, " +
+            "#{userClass}, " +
+            "#{college})"+
+            "</script>")
+    int insert(Register register);
+
+    /**
+     * 删除register表中id=#{id}的行。
+     *
+     * @param id 要删除的报名表的id。
+     * @return 成功从表中删除的行的数目，若没有删除任何行，则返回0。
+     */
+    @Delete("DELETE FROM register WHERE id = #{id}")
+    int deleteById(@Param("id") int id);
+
+    /**
+     * 根据{@link Register}对象的值更新对应的register表中的行。
+     *
+     * @param register 用于更新行的Register对象。
+     * @return 成功在表中的更新的行数目，若没有更新任何行，则返回0。
+     */
+    @Update("<script> "+
+            "UPDATE register SET "+
+            "activity_id = <if test='#{activity}==null'> NULL </if> <if test='#{activity}!=null'>#{activity.id}</if>, "+
+            "applicant_id = <if test='#{user}==null'> NULL </if> <if test='#{user}!=null'>#{user.id}</if>, "+
+            "name = #{name}, "+
+            "student_id = #{studentId}, "+
+            "email =  #{email}, "+
+            "phone_number = #{phoneNumber}, "+
+            "user_class = #{userClass}, "+
+            "college = #{college} "+
+            "WHERE id = #{register.id} "+
+            "</script>")
+    int update(Register register);
+
 }
