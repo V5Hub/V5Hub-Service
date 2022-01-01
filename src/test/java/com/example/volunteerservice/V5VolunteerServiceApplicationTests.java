@@ -1,6 +1,7 @@
 package com.example.volunteerservice;
 
 import com.example.volunteerservice.mapper.*;
+import com.example.volunteerservice.module.Activity;
 import com.example.volunteerservice.module.User;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -20,15 +21,17 @@ public class V5VolunteerServiceApplicationTests {
 
 
     private final UserMapper userMapper;
+    private final ActivityMapper activityMapper;
 
     @Autowired
-    public V5VolunteerServiceApplicationTests(UserMapper userMapper){
+    public V5VolunteerServiceApplicationTests(UserMapper userMapper, ActivityMapper activityMapper){
         this.userMapper = userMapper;
+        this.activityMapper = activityMapper;
     }
 
     @Test
-    public void testSelect() {
-        System.out.println(("----- UserMapper method test ------"));
+    public void testUserMapper() {
+        log.info("----- UserMapper method test ------");
 
         List<User> userList = userMapper.selectAll();
         userList.forEach(System.out::println);
@@ -46,7 +49,23 @@ public class V5VolunteerServiceApplicationTests {
         User user1 = userMapper.selectById(4);
         log.info(user1.toString());
 
+        log.info("pass");
+    }
 
-        System.out.println("pass");
+    @Test
+    public void testActivityMapper() {
+        log.info("----- ActivityMapper method test ------");
+
+        List<Activity> activityList = activityMapper.selectAll();
+        activityList.forEach(System.out::println);
+
+        Activity activity = new Activity(5,"体育活动",null,null,null,userMapper.selectById(1),null,null,"passed");
+        activityMapper.insert(activity);
+        activityList = activityMapper.selectAll();
+        activityList.forEach(System.out::println);
+
+        activityMapper.deleteById(5);
+        activityList = activityMapper.selectAll();
+        activityList.forEach(System.out::println);
     }
 }

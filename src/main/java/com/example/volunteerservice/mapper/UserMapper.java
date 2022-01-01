@@ -9,13 +9,16 @@ import java.util.List;
 
 /**
  * 实现数据库中user表与User类的映射
+ *
+ * @see User
+ * @version 1.0
  */
 @Mapper
 public interface UserMapper {
     /**
-     * 读取User表中的所有行，并映射为User对象
+     * 读取user表中的所有行，并映射为User对象
      * @param
-     * @return 包含所以user的User列表
+     * @return 包含所有user的User列表
      */
     @Select("SELECT * FROM user")
     @Results({
@@ -77,7 +80,7 @@ public interface UserMapper {
      * @param user 用于更新行的User对象。
      * @return 成功在表中的更新的行数目，若没有更新任何行，则返回0。
      */
-    @Update("UPDATE user SET"+
+    @Update("UPDATE user SET "+
             "name = #{name},"+
             "student_id = #{studentId},"+
             "email = #{email},"+
@@ -85,7 +88,7 @@ public interface UserMapper {
             "password = #{password},"+
             "college = #{college},"+
             "deleted = #{deleted},"+
-            "picture = #{picture}"+
+            "picture = #{picture} "+
             "WHERE id = #{id}")
     int update(User user);
 

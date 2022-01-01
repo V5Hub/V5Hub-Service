@@ -33,7 +33,7 @@ public class Activity {
      */
     private String position;
     /**
-     * 活动发起人id
+     * 活动发起人
      */
     private User user;
     /**
