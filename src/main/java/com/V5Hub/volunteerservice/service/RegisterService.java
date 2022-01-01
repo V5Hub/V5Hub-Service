@@ -1,4 +1,4 @@
-package com.example.volunteerservice.service;
+package com.V5Hub.volunteerservice.service;
 
 /**
  * @author WarmCongee

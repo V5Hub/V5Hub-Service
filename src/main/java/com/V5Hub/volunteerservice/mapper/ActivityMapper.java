@@ -1,9 +1,7 @@
-package com.example.volunteerservice.mapper;
+package com.V5Hub.volunteerservice.mapper;
 
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.example.volunteerservice.module.Activity;
-import com.example.volunteerservice.module.User;
+import com.V5Hub.volunteerservice.module.Activity;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
 
@@ -29,7 +27,7 @@ public interface ActivityMapper {
             @Result(property = "startTime", column = "start_time"),
             @Result(property = "endTime", column = "end_time"),
             @Result(property = "position", column = "position"),
-            @Result(property = "user", column = "sponsor_id", one = @One(select = "com.example.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
+            @Result(property = "user", column = "sponsor_id", one = @One(select = "com.V5Hub.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
             @Result(property = "description", column = "description"),
             @Result(property = "picture", column = "picture"),
             @Result(property = "stateType", column = "state_type"),
@@ -49,7 +47,7 @@ public interface ActivityMapper {
             @Result(property = "startTime", column = "start_time"),
             @Result(property = "endTime", column = "end_time"),
             @Result(property = "position", column = "position"),
-            @Result(property = "user", column = "sponsor_id", one = @One(select = "com.example.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
+            @Result(property = "user", column = "sponsor_id", one = @One(select = "com.V5Hub.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
             @Result(property = "description", column = "description"),
             @Result(property = "picture", column = "picture"),
             @Result(property = "stateType", column = "state_type"),

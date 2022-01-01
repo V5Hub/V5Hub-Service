@@ -1,9 +1,7 @@
-package com.example.volunteerservice.mapper;
+package com.V5Hub.volunteerservice.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.example.volunteerservice.module.User;
+import com.V5Hub.volunteerservice.module.User;
 import org.apache.ibatis.annotations.*;
-import org.apache.ibatis.mapping.FetchType;
 
 import java.util.List;
 

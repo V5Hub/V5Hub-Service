@@ -1,8 +1,7 @@
-package com.example.volunteerservice.mapper;
+package com.V5Hub.volunteerservice.mapper;
 
 
-import com.example.volunteerservice.module.Manager;
-import com.example.volunteerservice.module.User;
+import com.V5Hub.volunteerservice.module.Manager;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
 
@@ -17,7 +16,7 @@ public interface ManagerMapper {
     @Select("SELECT * FROM manager")
     @Results({
             @Result(id = true, property = "id", column = "id",
-                    one = @One(select = "com.example.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
+                    one = @One(select = "com.V5Hub.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
     })
     List<Manager> selectAll();
 
@@ -30,7 +29,7 @@ public interface ManagerMapper {
     @Select("SELECT * FROM manager WHERE id = #{id}")
     @Results({
             @Result(id = true, property = "id", column = "id",
-                    one = @One(select = "com.example.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
+                    one = @One(select = "com.V5Hub.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
     })
     Manager selectById(@Param("id") int id);
 

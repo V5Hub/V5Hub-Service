@@ -1,8 +1,9 @@
-package com.example.volunteerservice;
+package com.V5Hub.volunteerservice;
 
-import com.example.volunteerservice.mapper.*;
-import com.example.volunteerservice.module.Activity;
-import com.example.volunteerservice.module.User;
+import com.V5Hub.volunteerservice.mapper.ActivityMapper;
+import com.V5Hub.volunteerservice.mapper.UserMapper;
+import com.V5Hub.volunteerservice.module.Activity;
+import com.V5Hub.volunteerservice.module.User;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -15,7 +16,7 @@ import java.util.List;
 
 @Slf4j
 @RunWith(SpringRunner.class)
-@MapperScan("com/example/volunteerservice/mapper")
+@MapperScan("com/V5Hub/volunteerservice/mapper")
 @SpringBootTest
 public class V5VolunteerServiceApplicationTests {
 

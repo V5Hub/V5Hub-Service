@@ -1,4 +1,4 @@
-package com.example.volunteerservice.module;
+package com.V5Hub.volunteerservice.module;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
