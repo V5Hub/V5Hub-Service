@@ -2,6 +2,7 @@ package com.V5Hub.volunteerservice.mapper;
 
 import com.V5Hub.volunteerservice.module.User;
 import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.mapping.FetchType;
 
 import java.util.List;
 
@@ -49,6 +50,8 @@ public interface UserMapper {
             @Result(property = "college", column = "college"),
             @Result(property = "deleted", column = "deleted"),
             @Result(property = "picture", column = "picture"),
+            @Result(property = "registers", column = "id",
+                    many = @Many(select = "com.V5Hub.volunteerservice.mapper.RegisterMapper.selectByApplicantId", fetchType = FetchType.LAZY)),
     })
     User selectById(@Param("id") int id);
 

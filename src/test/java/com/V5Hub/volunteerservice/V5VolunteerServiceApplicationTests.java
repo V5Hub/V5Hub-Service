@@ -38,7 +38,7 @@ public class V5VolunteerServiceApplicationTests {
         userList.forEach(System.out::println);
 
         User user = new User(5,"test5","2020302020",
-                null,null,"test5",null,false,null);
+                null,null,"test5",null,false,null,null);
         userMapper.insert(user);
         List<User> newUserList = userMapper.selectAll();
         newUserList.forEach(System.out::println);

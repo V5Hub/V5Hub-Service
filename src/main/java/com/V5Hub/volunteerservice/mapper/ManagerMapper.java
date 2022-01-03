@@ -30,11 +30,13 @@ public interface ManagerMapper {
     @Results({
             @Result(id = true, property = "id", column = "id",
                     one = @One(select = "com.V5Hub.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
+            @Result(property = "activities", column = "id",
+                    many = @Many(select = "com.V5Hub.volunteerservice.mapper.ActivityMapper.selectByManagerId", fetchType = FetchType.LAZY))
     })
     Manager selectById(@Param("id") int id);
 
     /**
-     * 把{@link Manager}对象插入到user表中。
+     * 把{@link Manager}对象插入到manager表中。
      *
      * @param manager 要插入的{@link Manager}对象。
      * @return 成功插入到表中的行的数目，若插入失败或插入被忽略，则返回0。

@@ -19,6 +19,7 @@ CREATE TABLE  IF NOT EXISTS user (
 
 CREATE TABLE  IF NOT EXISTS manager (
     manager_id INT NOT NULL,
+    deleted BOOLEAN NOT NULL,
     FOREIGN KEY (manager_id) REFERENCES user (id),
     PRIMARY KEY (manager_id)
 ) DEFAULT CHARSET=utf8;

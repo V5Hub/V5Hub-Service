@@ -25,7 +25,7 @@ public interface RegisterMapper{
     @Results({
             @Result(id = true, property = "id", column = "id"),
             @Result(property = "activity", column = "activity_id", one = @One(select = "com.V5Hub.volunteerservice.mapper.ActivityMapper.selectById", fetchType = FetchType.LAZY)),
-            @Result(property = "user", column = "applicant_id", one = @One(select = "com.V5Hub.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
+            @Result(property = "userId", column = "applicant_id"),
             @Result(property = "name", column = "name"),
             @Result(property = "studentId", column = "student_id"),
             @Result(property = "email", column = "email"),
@@ -37,7 +37,7 @@ public interface RegisterMapper{
 
 
     /**
-     * 查找对应id的活动
+     * 查找对应id的报名表
      * @param id 活动id
      * @return id=#{id}的Register对象
      */
@@ -45,7 +45,7 @@ public interface RegisterMapper{
     @Results({
             @Result(id = true, property = "id", column = "id"),
             @Result(property = "activity", column = "activity_id", one = @One(select = "com.V5Hub.volunteerservice.mapper.ActivityMapper.selectById", fetchType = FetchType.LAZY)),
-            @Result(property = "user", column = "applicant_id", one = @One(select = "com.V5Hub.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
+            @Result(property = "userId", column = "applicant_id"),
             @Result(property = "name", column = "name"),
             @Result(property = "studentId", column = "student_id"),
             @Result(property = "email", column = "email"),
@@ -54,6 +54,26 @@ public interface RegisterMapper{
             @Result(property = "college", column = "college"),
     })
     Register selectById(@Param("id") int id);
+
+
+    /**
+     * 查找用户id参加的所有活动
+     * @param applicantId 用户id
+     * @return applicant_id = #{applicantId}的Register对象
+     */
+    @Select("SELECT * FROM register where applicant_id = #{applicantId}")
+    @Results({
+            @Result(id = true, property = "id", column = "id"),
+            @Result(property = "activity", column = "activity_id", one = @One(select = "com.V5Hub.volunteerservice.mapper.ActivityMapper.selectById", fetchType = FetchType.LAZY)),
+            @Result(property = "userId", column = "applicant_id"),
+            @Result(property = "name", column = "name"),
+            @Result(property = "studentId", column = "student_id"),
+            @Result(property = "email", column = "email"),
+            @Result(property = "phoneNumber", column = "phone_number"),
+            @Result(property = "userClass", column = "user_class"),
+            @Result(property = "college", column = "college"),
+    })
+    List<Register> selectByApplicantId(@Param("applicantId") int applicantId);
 
     /**
      * 把{@link Register}对象插入到register表中。
@@ -66,8 +86,9 @@ public interface RegisterMapper{
             "register(id, activity_id, applicant_id, name, student_id, email, phone_number, user_class, college) "+
             "VALUES(#{id}, " +
             "<if test='#{activity}==null'> NULL </if> <if test='#{activity}!=null'>#{activity.id}</if>, " +
-            "<if test='#{user}==null'> NULL </if> <if test='#{user}!=null'>#{user.id}</if>, " +
-            "#{name}, #{studentId}, " +
+            "#{userId}, " +
+            "#{name}, " +
+            "#{studentId}, " +
             "#{email}, " +
             "#{phoneNumber}, " +
             "#{userClass}, " +
@@ -93,7 +114,7 @@ public interface RegisterMapper{
     @Update("<script> "+
             "UPDATE register SET "+
             "activity_id = <if test='#{activity}==null'> NULL </if> <if test='#{activity}!=null'>#{activity.id}</if>, "+
-            "applicant_id = <if test='#{user}==null'> NULL </if> <if test='#{user}!=null'>#{user.id}</if>, "+
+            "applicant_id = #{userId}, "+
             "name = #{name}, "+
             "student_id = #{studentId}, "+
             "email =  #{email}, "+

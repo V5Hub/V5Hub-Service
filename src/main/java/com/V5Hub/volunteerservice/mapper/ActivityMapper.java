@@ -54,6 +54,26 @@ public interface ActivityMapper {
     })
     Activity selectById(@Param("id") int id);
 
+
+    /**
+     * 查找对应管理员id发布的的活动
+     * @param managerId 主办方管理员id
+     * @return sponsor_id=#{managerId}的Activity对象列表
+     */
+    @Select("SELECT * FROM activity where sponsor_id = #{managerId}")
+    @Results({
+            @Result(id = true, property = "id", column = "id"),
+            @Result(property = "name", column = "name"),
+            @Result(property = "startTime", column = "start_time"),
+            @Result(property = "endTime", column = "end_time"),
+            @Result(property = "position", column = "position"),
+            @Result(property = "user", column = "sponsor_id", one = @One(select = "com.V5Hub.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
+            @Result(property = "description", column = "description"),
+            @Result(property = "picture", column = "picture"),
+            @Result(property = "stateType", column = "state_type"),
+    })
+    List<Activity> selectByManagerId(@Param("managerId") int managerId);
+
     /**
      * 把{@link Activity}对象插入到activity表中。
      *

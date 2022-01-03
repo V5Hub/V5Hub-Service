@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -44,4 +46,8 @@ public class User {
      * 头像
      */
     private byte[] picture;
+    /**
+     * 报名表
+     */
+    private List<Register> registers;
 }
