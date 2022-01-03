@@ -10,6 +10,7 @@ import java.util.List;
 /**
  * 实现数据库中activity表与Activity类的映射
  *
+ * @author WarmCongee
  * @see Activity
  * @version 1.0
  */

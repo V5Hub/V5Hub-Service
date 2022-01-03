@@ -7,6 +7,11 @@ import org.apache.ibatis.mapping.FetchType;
 
 import java.util.List;
 
+/**
+ * 实现数据库中manager表与Manager类的映射
+ *
+ * @author WarmCongee
+ */
 public interface ManagerMapper {
     /**
      * 读取manager表中的所有行，并映射为Manager对象
