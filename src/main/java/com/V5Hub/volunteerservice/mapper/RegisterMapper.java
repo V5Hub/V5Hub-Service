@@ -55,9 +55,28 @@ public interface RegisterMapper{
     })
     Register selectById(@Param("id") int id);
 
+    /**
+     * 对应用户和对应活动的报名表
+     * @param applicantId 用户id
+     * @param activityId 活动id
+     * @return Register对象
+     */
+    @Select("SELECT * FROM register where applicant_id = #{applicantId} and activity_id = #{activityId} ")
+    @Results({
+            @Result(id = true, property = "id", column = "id"),
+            @Result(property = "activity", column = "activity_id", one = @One(select = "com.V5Hub.volunteerservice.mapper.ActivityMapper.selectById", fetchType = FetchType.LAZY)),
+            @Result(property = "userId", column = "applicant_id"),
+            @Result(property = "name", column = "name"),
+            @Result(property = "studentId", column = "student_id"),
+            @Result(property = "email", column = "email"),
+            @Result(property = "phoneNumber", column = "phone_number"),
+            @Result(property = "userClass", column = "user_class"),
+            @Result(property = "college", column = "college"),
+    })
+    Register selectByUserIdActivityId(@Param("applicantId") int applicantId, @Param("activityId") int activityId);
 
     /**
-     * 查找用户id参加的所有活动
+     * 查找用户id的所有报名表
      * @param applicantId 用户id
      * @return applicant_id = #{applicantId}的Register对象
      */

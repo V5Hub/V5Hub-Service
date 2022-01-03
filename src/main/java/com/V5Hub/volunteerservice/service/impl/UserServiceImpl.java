@@ -1,42 +1,51 @@
 package com.V5Hub.volunteerservice.service.impl;
 
+import com.V5Hub.volunteerservice.mapper.UserMapper;
 import com.V5Hub.volunteerservice.module.User;
 import com.V5Hub.volunteerservice.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 /**
  * @author WarmCongee
- * @date 2022/1/1 18:15
  */
 public class UserServiceImpl implements UserService {
+
+    @Autowired
+    private UserMapper userMapper;
+
     @Override
     public List<User> selectAll() {
-        return null;
+        return userMapper.selectAll();
     }
 
     @Override
     public User selectById(int id) {
-        return null;
+        return userMapper.selectById(id);
     }
 
     @Override
     public int deleteById(int id) {
-        return 0;
+        return userMapper.deleteById(id);
     }
 
     @Override
     public int insert(User user) {
-        return 0;
+        return userMapper.insert(user);
     }
 
     @Override
     public int insert(List<User> users) {
-        return 0;
+        int count = 0;
+        for(var user : users){
+            count += insert(user);
+        }
+        return count;
     }
 
     @Override
     public int update(User user) {
-        return 0;
+        return userMapper.update(user);
     }
 }

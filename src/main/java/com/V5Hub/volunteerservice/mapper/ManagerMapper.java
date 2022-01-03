@@ -22,6 +22,8 @@ public interface ManagerMapper {
     @Results({
             @Result(id = true, property = "id", column = "id",
                     one = @One(select = "com.V5Hub.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
+            @Result(property = "activities", column = "id",
+                    many = @Many(select = "com.V5Hub.volunteerservice.mapper.ActivityMapper.selectByManagerId", fetchType = FetchType.LAZY))
     })
     List<Manager> selectAll();
 

@@ -1,42 +1,51 @@
 package com.V5Hub.volunteerservice.service.impl;
 
+import com.V5Hub.volunteerservice.mapper.ActivityMapper;
 import com.V5Hub.volunteerservice.module.Activity;
 import com.V5Hub.volunteerservice.service.ActivityService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 /**
  * @author WarmCongee
- * @date 2022/1/1 18:14
  */
 public class ActivityServiceImpl implements ActivityService {
+
+    @Autowired
+    private ActivityMapper activityMapper;
+
     @Override
     public List<Activity> selectAll() {
-        return null;
+        return activityMapper.selectAll();
     }
 
     @Override
     public Activity selectById(int id) {
-        return null;
+        return activityMapper.selectById(id);
     }
 
     @Override
     public int deleteById(int id) {
-        return 0;
+        return activityMapper.deleteById(id);
     }
 
     @Override
     public int insert(Activity activity) {
-        return 0;
+        return activityMapper.insert(activity);
     }
 
     @Override
-    public int insert(List<Activity> activity) {
-        return 0;
+    public int insert(List<Activity> activities) {
+        int count = 0;
+        for(var activity : activities){
+            count += insert(activity);
+        }
+        return count;
     }
 
     @Override
     public int update(Activity activity) {
-        return 0;
+        return update(activity);
     }
 }
