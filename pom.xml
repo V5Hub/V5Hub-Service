@@ -8,11 +8,11 @@
         <version>2.6.1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.example</groupId>
-    <artifactId>V5-Volunteer-Service</artifactId>
+    <groupId>com.V5Hub</groupId>
+    <artifactId>V5Hub-Service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>V5-Volunteer-Service</name>
-    <description>V5-Volunteer-Service</description>
+    <name>V5Hub-Service</name>
+    <description>V5Hub-Service</description>
     <properties>
         <java.version>11</java.version>
     </properties>
