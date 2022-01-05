@@ -73,7 +73,7 @@ public interface ActivityMapper {
             @Result(property = "picture", column = "picture"),
             @Result(property = "stateType", column = "state_type"),
     })
-    List<Activity> selectByManagerId(@Param("managerId") int managerId);
+    List<Activity> selectByManagerId(@Param("managerId") String managerId);
 
     /**
      * 把{@link Activity}对象插入到activity表中。

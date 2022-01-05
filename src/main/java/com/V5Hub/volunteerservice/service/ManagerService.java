@@ -2,6 +2,7 @@ package com.V5Hub.volunteerservice.service;
 
 import com.V5Hub.volunteerservice.module.Manager;
 import com.V5Hub.volunteerservice.module.User;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ import java.util.List;
  * @author WarmCongee
  * @version 1.0
  */
+@Repository
 public interface ManagerService {
 
     /**
@@ -27,7 +29,7 @@ public interface ManagerService {
      * @param id 用户id
      * @return {@link List<Manager>} 数据库中所有manager
      */
-    Manager selectById(int id);
+    Manager selectById(String id);
 
 
     /**
@@ -36,7 +38,7 @@ public interface ManagerService {
      * @param id 用户id
      * @return int 删除的行数
      */
-    int deleteById(int id);
+    int deleteById(String id);
 
     /**
      * 插入一个用户信息到数据库

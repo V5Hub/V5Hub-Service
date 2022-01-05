@@ -4,12 +4,14 @@ import com.V5Hub.volunteerservice.mapper.RegisterMapper;
 import com.V5Hub.volunteerservice.module.Register;
 import com.V5Hub.volunteerservice.service.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * @author WarmCongee
  */
+@Service
 public class RegisterServiceImpl implements RegisterService {
 
     @Autowired

@@ -73,7 +73,7 @@ public interface RegisterMapper{
             @Result(property = "userClass", column = "user_class"),
             @Result(property = "college", column = "college"),
     })
-    Register selectByUserIdActivityId(@Param("applicantId") int applicantId, @Param("activityId") int activityId);
+    Register selectByUserIdActivityId(@Param("applicantId") String applicantId, @Param("activityId") int activityId);
 
     /**
      * 查找用户id的所有报名表
@@ -92,7 +92,7 @@ public interface RegisterMapper{
             @Result(property = "userClass", column = "user_class"),
             @Result(property = "college", column = "college"),
     })
-    List<Register> selectByApplicantId(@Param("applicantId") int applicantId);
+    List<Register> selectByApplicantId(@Param("applicantId") String applicantId);
 
     /**
      * 把{@link Register}对象插入到register表中。

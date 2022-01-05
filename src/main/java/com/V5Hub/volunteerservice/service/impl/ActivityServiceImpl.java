@@ -4,12 +4,14 @@ import com.V5Hub.volunteerservice.mapper.ActivityMapper;
 import com.V5Hub.volunteerservice.module.Activity;
 import com.V5Hub.volunteerservice.service.ActivityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * @author WarmCongee
  */
+@Service
 public class ActivityServiceImpl implements ActivityService {
 
     @Autowired
