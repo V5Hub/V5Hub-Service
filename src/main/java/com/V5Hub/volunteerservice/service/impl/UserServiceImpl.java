@@ -4,12 +4,14 @@ import com.V5Hub.volunteerservice.mapper.UserMapper;
 import com.V5Hub.volunteerservice.module.User;
 import com.V5Hub.volunteerservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * @author WarmCongee
  */
+@Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -21,12 +23,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User selectById(int id) {
+    public User selectById(String id) {
         return userMapper.selectById(id);
     }
 
     @Override
-    public int deleteById(int id) {
+    public int deleteById(String id) {
         return userMapper.deleteById(id);
     }
 
@@ -47,5 +49,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public int update(User user) {
         return userMapper.update(user);
+    }
+
+    @Override
+    public User newUserLogin(String openId){
+        return new User(openId,"",null,null,null,null,null,false,null,null);
     }
 }

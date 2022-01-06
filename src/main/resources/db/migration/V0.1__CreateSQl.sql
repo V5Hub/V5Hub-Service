@@ -5,7 +5,7 @@ USE volunteer;
 
 
 CREATE TABLE  IF NOT EXISTS user (
-    id INT NOT NULL AUTO_INCREMENT,
+    id VARCHAR(30) NOT NULL,
     name VARCHAR(30) NOT NULL,
     student_id VARCHAR(10) DEFAULT NULL,
     email VARCHAR(30),
@@ -18,19 +18,21 @@ CREATE TABLE  IF NOT EXISTS user (
 ) DEFAULT CHARSET=utf8;
 
 CREATE TABLE  IF NOT EXISTS manager (
-    manager_id INT NOT NULL,
+    manager_id VARCHAR(30) NOT NULL,
     deleted BOOLEAN NOT NULL,
     FOREIGN KEY (manager_id) REFERENCES user (id),
     PRIMARY KEY (manager_id)
 ) DEFAULT CHARSET=utf8;
 
+
+-- tag content  pic->delete
 CREATE TABLE IF NOT EXISTS activity (
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(30) NOT NULL,
     start_time TIME,
     end_time TIME,
     position VARCHAR(30),
-    sponsor_id INT NOT NULL,
+    sponsor_id VARCHAR(30) NOT NULL,
     description TEXT,
     picture LONGBLOB,
     state_type  VARCHAR(30),
@@ -41,7 +43,7 @@ CREATE TABLE IF NOT EXISTS activity (
 CREATE TABLE IF NOT EXISTS register (
     id INT NOT NULL AUTO_INCREMENT,
     activity_id INT NOT NULL,
-    applicant_id INT NOT NULL,
+    applicant_id VARCHAR(30) NOT NULL,
     name VARCHAR(30),
     student_id VARCHAR(10),
     email VARCHAR(30),

@@ -4,12 +4,14 @@ import com.V5Hub.volunteerservice.mapper.ManagerMapper;
 import com.V5Hub.volunteerservice.module.Manager;
 import com.V5Hub.volunteerservice.service.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * @author WarmCongee
  */
+@Service
 public class ManagerServiceImpl implements ManagerService {
 
     @Autowired
@@ -21,12 +23,12 @@ public class ManagerServiceImpl implements ManagerService {
     }
 
     @Override
-    public Manager selectById(int id) {
+    public Manager selectById(String id) {
         return managerMapper.selectById(id);
     }
 
     @Override
-    public int deleteById(int id) {
+    public int deleteById(String id) {
         return managerMapper.deleteById(id);
     }
 

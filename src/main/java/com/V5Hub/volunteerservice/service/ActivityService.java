@@ -2,6 +2,7 @@ package com.V5Hub.volunteerservice.service;
 
 import com.V5Hub.volunteerservice.module.Activity;
 import com.V5Hub.volunteerservice.module.Register;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ import java.util.List;
  * @author WarmCongee
  * @version 1.0
  */
+@Repository
 public interface ActivityService {
     /**
      * 获取activity表所有活动数据的实体类列表{@link List<Activity>}
