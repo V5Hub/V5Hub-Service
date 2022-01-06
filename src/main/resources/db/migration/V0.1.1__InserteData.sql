@@ -9,9 +9,9 @@ INSERT INTO manager(manager_id,deleted)
     VALUE ('1',false),('2',false);
 
 INSERT INTO activity(id,name,position,sponsor_id,description,state_type)
-VALUE (1,'程序星大赛','实验大楼','1','编程','passed'),
-      (2,'足基元旦杯','实验大楼','2','编程','reviewing'),
-      (3,'文娱活动','实验大楼','2','文娱','deleted');
+VALUE (1,'程序星大赛','实验大楼','1','编程',1),
+      (2,'足基元旦杯','实验大楼','2','编程',1),
+      (3,'文娱活动','实验大楼','2','文娱',1);
 
 INSERT INTO register(id,activity_id,applicant_id,name,student_id,state)
 VALUE (1,1,'3','test3','2020302031',1),

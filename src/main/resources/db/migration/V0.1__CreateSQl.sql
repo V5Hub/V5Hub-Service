@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS activity (
     description TEXT,
     content TEXT,
     picture LONGBLOB,
-    state_type  VARCHAR(30),
+    state_type  INT NOT NULL,
     FOREIGN KEY (sponsor_id) REFERENCES user (id),
     PRIMARY KEY (id)
 ) DEFAULT CHARSET=utf8;
