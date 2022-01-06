@@ -54,6 +54,7 @@ CREATE TABLE IF NOT EXISTS register (
     phone_number VARCHAR(11),
     user_class VARCHAR(11),
     college VARCHAR(30),
+    state INT NOT NULL,
     FOREIGN KEY (activity_id) REFERENCES activity (id),
     FOREIGN KEY (applicant_id) REFERENCES user (id),
     PRIMARY KEY (id)

@@ -44,4 +44,8 @@ public class Register {
      * 报名者所属学院
      */
     private String college;
+    /**
+     * 参加活动状态1：报名未通过 2：报名已通过 3：正在参加 4：已完成
+     */
+    private int state;
 }
