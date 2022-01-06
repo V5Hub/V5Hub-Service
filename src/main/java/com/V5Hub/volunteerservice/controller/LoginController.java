@@ -30,6 +30,13 @@ public class LoginController {
         this.userService = userService;
     }
 
+
+    @RequestMapping("/example")
+    @ResponseBody
+    public Result example() {
+        return Result.success(userService.newUserLogin("1111"),200,"sucess");
+    }
+
     @RequestMapping("/login")
     @ResponseBody
     public Result login(@RequestBody WeChatModel weChatModel) {
