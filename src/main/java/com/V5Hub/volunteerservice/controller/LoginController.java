@@ -83,7 +83,7 @@ public class LoginController {
                 }
             }
             else {
-                return Result.success(userService.selectById(openid),200,"success");
+                return Result.success(userService.selectById(openid));
             }
         } catch (Exception e) {
             return Result.fail(null, 6000, e.getMessage());

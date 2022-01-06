@@ -27,7 +27,9 @@ public interface ActivityMapper {
             @Result(property = "name", column = "name"),
             @Result(property = "startTime", column = "start_time"),
             @Result(property = "endTime", column = "end_time"),
+            @Result(property = "registerDeadline", column = "register_deadline"),
             @Result(property = "position", column = "position"),
+            @Result(property = "sponsorName", column = "sponsor_name"),
             @Result(property = "user", column = "sponsor_id", one = @One(select = "com.V5Hub.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
             @Result(property = "tags", column = "tags"),
             @Result(property = "description", column = "description"),
@@ -49,7 +51,9 @@ public interface ActivityMapper {
             @Result(property = "name", column = "name"),
             @Result(property = "startTime", column = "start_time"),
             @Result(property = "endTime", column = "end_time"),
+            @Result(property = "registerDeadline", column = "register_deadline"),
             @Result(property = "position", column = "position"),
+            @Result(property = "sponsorName", column = "sponsor_name"),
             @Result(property = "user", column = "sponsor_id", one = @One(select = "com.V5Hub.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
             @Result(property = "tags", column = "tags"),
             @Result(property = "description", column = "description"),
@@ -71,7 +75,9 @@ public interface ActivityMapper {
             @Result(property = "name", column = "name"),
             @Result(property = "startTime", column = "start_time"),
             @Result(property = "endTime", column = "end_time"),
+            @Result(property = "registerDeadline", column = "register_deadline"),
             @Result(property = "position", column = "position"),
+            @Result(property = "sponsorName", column = "sponsor_name"),
             @Result(property = "user", column = "sponsor_id", one = @One(select = "com.V5Hub.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
             @Result(property = "tags", column = "tags"),
             @Result(property = "description", column = "description"),
@@ -89,8 +95,8 @@ public interface ActivityMapper {
      */
     @Insert("<script>"+
             "INSERT IGNORE INTO "+
-            "activity(id, name, start_time, end_time, position, sponsor_id, tags, description, content, picture, state_type) "+
-            "VALUES(#{id}, #{name}, #{startTime}, #{endTime}, #{position}, " +
+            "activity(id, name, start_time, end_time, register_deadline, position, sponsor_name, sponsor_id, tags, description, content, picture, state_type) "+
+            "VALUES(#{id}, #{name}, #{startTime}, #{endTime}, #{registerDeadline}, #{position}, #{sponsorName}," +
             "<if test='#{user}==null'> NULL </if> <if test='#{user}!=null'>#{user.id}</if>, " +
             "#{tags}, #{description}, #{content}, #{picture}, #{stateType})"+
             "</script>")
@@ -113,10 +119,12 @@ public interface ActivityMapper {
      */
     @Update("<script> "+
             "UPDATE activity SET "+
-            "name = #{name},"+
-            "start_time = #{startTime},"+
-            "end_time = #{endTime},"+
-            "position = #{position},"+
+            "name = #{name}, "+
+            "start_time = #{startTime}, "+
+            "end_time = #{endTime}, " +
+            "register_deadline = #{registerDeadline}, "+
+            "position = #{position}, " +
+            "sponsor_name = #{sponsorName}, "+
             "sponsor_id = <if test='#{user}==null'> NULL </if> <if test='#{user}!=null'>#{user.id}</if>, " +
             "tags = #{tags}"+
             "description = #{description},"+
