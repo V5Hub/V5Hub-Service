@@ -36,9 +36,17 @@ public class Activity {
      */
     private User user;
     /**
-     * 活动描述
+     * 活动类型tag '-'连接
+     */
+    private String tags;
+    /**
+     * 活动简单描述
      */
     private String description;
+    /**
+     * 活动具体内容/推文
+     */
+    private String content;
     /**
      * 活动海报
      */

@@ -60,7 +60,7 @@ public class V5VolunteerServiceApplicationTests {
         List<Activity> activityList = activityMapper.selectAll();
         activityList.forEach(System.out::println);
 
-        Activity activity = new Activity(5,"体育活动",null,null,null,userMapper.selectById("1"),null,null,"passed");
+        Activity activity = new Activity(5,"体育活动",null,null,null,userMapper.selectById("1"),null,null,null,null,"passed");
         activityMapper.insert(activity);
         activityList = activityMapper.selectAll();
         activityList.forEach(System.out::println);
