@@ -28,9 +28,17 @@ public class Activity {
      */
     private Date endTime;
     /**
+     * 活动结束时间
+     */
+    private Date registerDeadline;
+    /**
      * 活动地点
      */
     private String position;
+    /**
+     * 主办方名称
+     */
+    private String sponsorName;
     /**
      * 活动发起人
      */
