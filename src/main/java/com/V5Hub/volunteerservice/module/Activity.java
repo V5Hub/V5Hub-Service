@@ -62,5 +62,5 @@ public class Activity {
     /**
      * 活动信息状态
      */
-    private String stateType;
+    private int stateType;
 }
