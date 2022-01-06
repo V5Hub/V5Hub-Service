@@ -29,7 +29,9 @@ public interface ActivityMapper {
             @Result(property = "endTime", column = "end_time"),
             @Result(property = "position", column = "position"),
             @Result(property = "user", column = "sponsor_id", one = @One(select = "com.V5Hub.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
+            @Result(property = "tags", column = "tags"),
             @Result(property = "description", column = "description"),
+            @Result(property = "content", column = "content"),
             @Result(property = "picture", column = "picture"),
             @Result(property = "stateType", column = "state_type"),
     })
@@ -49,7 +51,9 @@ public interface ActivityMapper {
             @Result(property = "endTime", column = "end_time"),
             @Result(property = "position", column = "position"),
             @Result(property = "user", column = "sponsor_id", one = @One(select = "com.V5Hub.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
+            @Result(property = "tags", column = "tags"),
             @Result(property = "description", column = "description"),
+            @Result(property = "content", column = "content"),
             @Result(property = "picture", column = "picture"),
             @Result(property = "stateType", column = "state_type"),
     })
@@ -69,7 +73,9 @@ public interface ActivityMapper {
             @Result(property = "endTime", column = "end_time"),
             @Result(property = "position", column = "position"),
             @Result(property = "user", column = "sponsor_id", one = @One(select = "com.V5Hub.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
+            @Result(property = "tags", column = "tags"),
             @Result(property = "description", column = "description"),
+            @Result(property = "content", column = "content"),
             @Result(property = "picture", column = "picture"),
             @Result(property = "stateType", column = "state_type"),
     })
@@ -83,10 +89,10 @@ public interface ActivityMapper {
      */
     @Insert("<script>"+
             "INSERT IGNORE INTO "+
-            "activity(id, name, start_time, end_time, position, sponsor_id, description, picture, state_type) "+
+            "activity(id, name, start_time, end_time, position, sponsor_id, tags, description, content, picture, state_type) "+
             "VALUES(#{id}, #{name}, #{startTime}, #{endTime}, #{position}, " +
             "<if test='#{user}==null'> NULL </if> <if test='#{user}!=null'>#{user.id}</if>, " +
-            "#{description}, #{picture}, #{stateType})"+
+            "#{tags}, #{description}, #{content}, #{picture}, #{stateType})"+
             "</script>")
     int insert(Activity activity);
 
@@ -111,8 +117,10 @@ public interface ActivityMapper {
             "start_time = #{startTime},"+
             "end_time = #{endTime},"+
             "position = #{position},"+
-            "sponsor_id = <if test='#{user}==null'> NULL </if> <if test='#{user}!=null'>#{user.id}</if>,"+
+            "sponsor_id = <if test='#{user}==null'> NULL </if> <if test='#{user}!=null'>#{user.id}</if>, " +
+            "tags = #{tags}"+
             "description = #{description},"+
+            "content = #{content}"+
             "picture = #{picture},"+
             "state_type = #{stateType} "+
             "WHERE id = #{activity.id}"+
