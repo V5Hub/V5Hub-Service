@@ -2,12 +2,9 @@ package com.V5Hub.volunteerservice.controller;
 
 
 import com.V5Hub.volunteerservice.config.InfoConfig;
-import com.V5Hub.volunteerservice.entity.WeChatModel;
 import com.V5Hub.volunteerservice.entity.WeChatSessionModel;
 import com.V5Hub.volunteerservice.module.User;
 import com.V5Hub.volunteerservice.service.UserService;
-import com.V5Hub.volunteerservice.service.impl.UserServiceImpl;
-import com.V5Hub.volunteerservice.util.response.ResponseResult;
 import com.V5Hub.volunteerservice.util.response.Result;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -39,7 +35,7 @@ public class LoginController {
 
     @RequestMapping("/login")
     @ResponseBody
-    public Result login(@RequestBody WeChatModel weChatModel) {
+    public Result login(@RequestParam(value = "code", defaultValue = "") String code) {
         String openid = null;
         String session_key = null;
         String errcode = null;
@@ -47,7 +43,7 @@ public class LoginController {
         WeChatSessionModel weChatSessionModel;
 
         //微信服务器的接口路径
-        String url = "https://api.weixin.qq.com/sns/jscode2session?appid=" + InfoConfig.APPID + "&secret=" + InfoConfig.APPSECRET + "&js_code=" + weChatModel.getCode() + "&grant_type=authorization_code";
+        String url = "https://api.weixin.qq.com/sns/jscode2session?appid=" + InfoConfig.APPID + "&secret=" + InfoConfig.APPSECRET + "&js_code=" + code + "&grant_type=authorization_code";
         RestTemplate restTemplate = new RestTemplate();
         //进行网络请求,访问微信服务器接口
         ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.GET, null, String.class);
@@ -77,7 +73,7 @@ public class LoginController {
             if (openid == null || session_key == null) {
                 return Result.fail(null, 5000, "login failed");
             }
-            if (userService.selectById(openid) == null) {
+            else if (userService.selectById(openid) == null) {
                 User user = userService.newUserLogin(openid);
                 int count = userService.insert(user);
                 if (count >= 0) {
@@ -85,7 +81,8 @@ public class LoginController {
                 } else {
                     return Result.fail(null, 5000, "login failed");
                 }
-            } else {
+            }
+            else {
                 return Result.success(userService.selectById(openid),200,"success");
             }
         } catch (Exception e) {
