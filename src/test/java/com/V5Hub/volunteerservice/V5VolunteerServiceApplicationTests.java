@@ -2,8 +2,8 @@ package com.V5Hub.volunteerservice;
 
 import com.V5Hub.volunteerservice.mapper.ActivityMapper;
 import com.V5Hub.volunteerservice.mapper.UserMapper;
-import com.V5Hub.volunteerservice.module.Activity;
-import com.V5Hub.volunteerservice.module.User;
+import com.V5Hub.volunteerservice.model.Activity;
+import com.V5Hub.volunteerservice.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;

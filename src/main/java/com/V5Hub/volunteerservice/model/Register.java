@@ -1,4 +1,4 @@
-package com.V5Hub.volunteerservice.module;
+package com.V5Hub.volunteerservice.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

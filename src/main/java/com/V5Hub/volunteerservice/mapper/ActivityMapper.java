@@ -1,7 +1,7 @@
 package com.V5Hub.volunteerservice.mapper;
 
 
-import com.V5Hub.volunteerservice.module.Activity;
+import com.V5Hub.volunteerservice.model.Activity;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
 

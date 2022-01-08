@@ -3,7 +3,7 @@ package com.V5Hub.volunteerservice.controller;
 
 import com.V5Hub.volunteerservice.config.InfoConfig;
 import com.V5Hub.volunteerservice.entity.WeChatSessionModel;
-import com.V5Hub.volunteerservice.module.User;
+import com.V5Hub.volunteerservice.model.User;
 import com.V5Hub.volunteerservice.service.UserService;
 import com.V5Hub.volunteerservice.util.response.Result;
 import com.fasterxml.jackson.core.JsonProcessingException;
