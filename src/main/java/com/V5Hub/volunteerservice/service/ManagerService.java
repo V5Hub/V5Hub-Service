@@ -1,7 +1,6 @@
 package com.V5Hub.volunteerservice.service;
 
-import com.V5Hub.volunteerservice.module.Manager;
-import com.V5Hub.volunteerservice.module.User;
+import com.V5Hub.volunteerservice.model.Manager;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

@@ -2,8 +2,8 @@ package com.V5Hub.volunteerservice;
 
 import com.V5Hub.volunteerservice.mapper.ActivityMapper;
 import com.V5Hub.volunteerservice.mapper.UserMapper;
-import com.V5Hub.volunteerservice.module.Activity;
-import com.V5Hub.volunteerservice.module.User;
+import com.V5Hub.volunteerservice.model.Activity;
+import com.V5Hub.volunteerservice.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -61,7 +61,7 @@ public class V5VolunteerServiceApplicationTests {
         activityList.forEach(System.out::println);
 
         Activity activity = new Activity(5,"体育活动",null,null,null,null,null
-                ,userMapper.selectById("1"),null,null,null,null,1);
+                ,userMapper.selectById("1"),null,null,null,null, null,1);
         activityMapper.insert(activity);
         activityList = activityMapper.selectAll();
         activityList.forEach(System.out::println);

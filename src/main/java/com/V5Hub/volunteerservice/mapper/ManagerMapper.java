@@ -1,7 +1,7 @@
 package com.V5Hub.volunteerservice.mapper;
 
 
-import com.V5Hub.volunteerservice.module.Manager;
+import com.V5Hub.volunteerservice.model.Manager;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
 
@@ -12,6 +12,7 @@ import java.util.List;
  *
  * @author WarmCongee
  */
+@Mapper
 public interface ManagerMapper {
     /**
      * 读取manager表中的所有行，并映射为Manager对象

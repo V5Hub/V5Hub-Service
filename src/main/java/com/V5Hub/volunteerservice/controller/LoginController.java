@@ -3,7 +3,7 @@ package com.V5Hub.volunteerservice.controller;
 
 import com.V5Hub.volunteerservice.config.InfoConfig;
 import com.V5Hub.volunteerservice.entity.WeChatSessionModel;
-import com.V5Hub.volunteerservice.module.User;
+import com.V5Hub.volunteerservice.model.User;
 import com.V5Hub.volunteerservice.service.UserService;
 import com.V5Hub.volunteerservice.util.response.Result;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -15,6 +15,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+
+/**
+ * 登录Controller
+ *
+ * @version 1.0
+ */
 @RestController
 @RequestMapping("/wx")
 public class LoginController {

@@ -1,7 +1,6 @@
 package com.V5Hub.volunteerservice.service;
 
-import com.V5Hub.volunteerservice.module.User;
-import org.springframework.lang.Nullable;
+import com.V5Hub.volunteerservice.model.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

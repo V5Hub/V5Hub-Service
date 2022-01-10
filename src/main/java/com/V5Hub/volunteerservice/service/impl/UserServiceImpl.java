@@ -1,7 +1,7 @@
 package com.V5Hub.volunteerservice.service.impl;
 
 import com.V5Hub.volunteerservice.mapper.UserMapper;
-import com.V5Hub.volunteerservice.module.User;
+import com.V5Hub.volunteerservice.model.User;
 import com.V5Hub.volunteerservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

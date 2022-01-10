@@ -1,6 +1,6 @@
 package com.V5Hub.volunteerservice.mapper;
 
-import com.V5Hub.volunteerservice.module.User;
+import com.V5Hub.volunteerservice.model.User;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
 
