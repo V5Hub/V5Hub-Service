@@ -15,6 +15,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+
+/**
+ * 登录Controller
+ *
+ * @version 1.0
+ */
 @RestController
 @RequestMapping("/wx")
 public class LoginController {
