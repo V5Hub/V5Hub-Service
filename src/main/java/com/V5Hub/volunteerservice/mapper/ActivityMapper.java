@@ -36,6 +36,7 @@ public interface ActivityMapper {
             @Result(property = "description", column = "description"),
             @Result(property = "content", column = "content"),
             @Result(property = "picture", column = "picture"),
+            @Result(property = "pictureHorizontal", column = "picture_horizontal"),
             @Result(property = "stateType", column = "state_type"),
     })
     List<Activity> selectAll();
@@ -60,6 +61,7 @@ public interface ActivityMapper {
             @Result(property = "description", column = "description"),
             @Result(property = "content", column = "content"),
             @Result(property = "picture", column = "picture"),
+            @Result(property = "pictureHorizontal", column = "picture_horizontal"),
             @Result(property = "stateType", column = "state_type"),
     })
     Activity selectById(@Param("id") int id);
@@ -85,6 +87,7 @@ public interface ActivityMapper {
             @Result(property = "description", column = "description"),
             @Result(property = "content", column = "content"),
             @Result(property = "picture", column = "picture"),
+            @Result(property = "pictureHorizontal", column = "picture_horizontal"),
             @Result(property = "stateType", column = "state_type"),
     })
     List<Activity> selectByDate(@Param("startTime") Date startTime, @Param("endTime") Date endTime);
@@ -109,6 +112,7 @@ public interface ActivityMapper {
             @Result(property = "description", column = "description"),
             @Result(property = "content", column = "content"),
             @Result(property = "picture", column = "picture"),
+            @Result(property = "pictureHorizontal", column = "picture_horizontal"),
             @Result(property = "stateType", column = "state_type"),
     })
     List<Activity> selectByManagerId(@Param("managerId") String managerId);
@@ -121,10 +125,10 @@ public interface ActivityMapper {
      */
     @Insert("<script>"+
             "INSERT IGNORE INTO "+
-            "activity(id, name, start_time, end_time, register_deadline, position, sponsor_name, sponsor_id, tags, description, content, picture, state_type) "+
+            "activity(id, name, start_time, end_time, register_deadline, position, sponsor_name, sponsor_id, tags, description, content, picture, picture_horizontal, state_type) "+
             "VALUES(#{id}, #{name}, #{startTime}, #{endTime}, #{registerDeadline}, #{position}, #{sponsorName}," +
             "<if test='#{user}==null'> NULL </if> <if test='#{user}!=null'>#{user.id}</if>, " +
-            "#{tags}, #{description}, #{content}, #{picture}, #{stateType})"+
+            "#{tags}, #{description}, #{content}, #{picture}, #{pictureHorizontal}, #{stateType})"+
             "</script>")
     int insert(Activity activity);
 
@@ -152,10 +156,11 @@ public interface ActivityMapper {
             "position = #{position}, " +
             "sponsor_name = #{sponsorName}, "+
             "sponsor_id = <if test='#{user}==null'> NULL </if> <if test='#{user}!=null'>#{user.id}</if>, " +
-            "tags = #{tags}"+
+            "tags = #{tags}, "+
             "description = #{description},"+
-            "content = #{content}"+
+            "content = #{content}, "+
             "picture = #{picture},"+
+            "picture_horizontal = #{pictureHorizontal}, "+
             "state_type = #{stateType} "+
             "WHERE id = #{activity.id}"+
             " </script>")

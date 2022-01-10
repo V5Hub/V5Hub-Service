@@ -56,9 +56,13 @@ public class Activity {
      */
     private String content;
     /**
-     * 活动海报
+     * 活动海报相对路径URL
      */
-    private byte[] picture;
+    private String picture;
+    /**
+     * 活动海报相对路径URL
+     */
+    private String pictureHorizontal;
     /**
      * 活动信息状态
      */

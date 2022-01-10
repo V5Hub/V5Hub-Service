@@ -38,8 +38,8 @@ CREATE TABLE IF NOT EXISTS activity (
     tags VARCHAR(30),
     description TEXT,
     content TEXT,
-    picture LONGBLOB,
-    picture_horizontal LONGBLOB,
+    picture VARCHAR(60), -- URL
+    picture_horizontal VARCHAR(60), -- URL
     state_type INT NOT NULL,
     FOREIGN KEY (sponsor_id) REFERENCES user (id),
     PRIMARY KEY (id)
