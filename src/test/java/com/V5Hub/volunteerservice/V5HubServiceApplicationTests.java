@@ -18,14 +18,14 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @MapperScan("com/V5Hub/volunteerservice/mapper")
 @SpringBootTest
-public class V5VolunteerServiceApplicationTests {
+public class V5HubServiceApplicationTests {
 
 
     private final UserMapper userMapper;
     private final ActivityMapper activityMapper;
 
     @Autowired
-    public V5VolunteerServiceApplicationTests(UserMapper userMapper, ActivityMapper activityMapper){
+    public V5HubServiceApplicationTests(UserMapper userMapper, ActivityMapper activityMapper){
         this.userMapper = userMapper;
         this.activityMapper = activityMapper;
     }
