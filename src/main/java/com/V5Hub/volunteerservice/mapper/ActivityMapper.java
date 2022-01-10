@@ -5,6 +5,7 @@ import com.V5Hub.volunteerservice.model.Activity;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -62,6 +63,31 @@ public interface ActivityMapper {
             @Result(property = "stateType", column = "state_type"),
     })
     Activity selectById(@Param("id") int id);
+
+
+    /**
+     * 查找与指定时间段有交集的活动
+     * @param startTime 指定时间段的开始时间
+     * @param endTime 指定时间段的结束时间
+     * @return (start_time, end_time)与(#{startTime}, #{endTime})有交集的Activity对象列表
+     */
+    @Select("SELECT * FROM activity where not ((end_time < #{startTime}) or (start_time > #{endTime})")
+    @Results({
+            @Result(id = true, property = "id", column = "id"),
+            @Result(property = "name", column = "name"),
+            @Result(property = "startTime", column = "start_time"),
+            @Result(property = "endTime", column = "end_time"),
+            @Result(property = "registerDeadline", column = "register_deadline"),
+            @Result(property = "position", column = "position"),
+            @Result(property = "sponsorName", column = "sponsor_name"),
+            @Result(property = "user", column = "sponsor_id", one = @One(select = "com.V5Hub.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
+            @Result(property = "tags", column = "tags"),
+            @Result(property = "description", column = "description"),
+            @Result(property = "content", column = "content"),
+            @Result(property = "picture", column = "picture"),
+            @Result(property = "stateType", column = "state_type"),
+    })
+    List<Activity> selectByDate(@Param("startTime") Date startTime, @Param("endTime") Date endTime);
 
 
     /**

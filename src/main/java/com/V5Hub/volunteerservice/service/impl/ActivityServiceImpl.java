@@ -6,6 +6,7 @@ import com.V5Hub.volunteerservice.service.ActivityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,6 +26,11 @@ public class ActivityServiceImpl implements ActivityService {
     @Override
     public Activity selectById(int id) {
         return activityMapper.selectById(id);
+    }
+
+    @Override
+    public List<Activity> selectByDate(Date startTime, Date endTime) {
+        return activityMapper.selectByDate(startTime, endTime);
     }
 
     @Override
