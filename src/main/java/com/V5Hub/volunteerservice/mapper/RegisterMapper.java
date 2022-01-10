@@ -1,6 +1,6 @@
 package com.V5Hub.volunteerservice.mapper;
 
-import com.V5Hub.volunteerservice.module.Register;
+import com.V5Hub.volunteerservice.model.Register;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
 
@@ -32,6 +32,7 @@ public interface RegisterMapper{
             @Result(property = "phoneNumber", column = "phone_number"),
             @Result(property = "userClass", column = "user_class"),
             @Result(property = "college", column = "college"),
+            @Result(property = "state", column = "state"),
     })
     List<Register> selectAll();
 
@@ -52,6 +53,7 @@ public interface RegisterMapper{
             @Result(property = "phoneNumber", column = "phone_number"),
             @Result(property = "userClass", column = "user_class"),
             @Result(property = "college", column = "college"),
+            @Result(property = "state", column = "state"),
     })
     Register selectById(@Param("id") int id);
 
@@ -72,8 +74,9 @@ public interface RegisterMapper{
             @Result(property = "phoneNumber", column = "phone_number"),
             @Result(property = "userClass", column = "user_class"),
             @Result(property = "college", column = "college"),
+            @Result(property = "state", column = "state"),
     })
-    Register selectByUserIdActivityId(@Param("applicantId") int applicantId, @Param("activityId") int activityId);
+    Register selectByUserIdActivityId(@Param("applicantId") String applicantId, @Param("activityId") int activityId);
 
     /**
      * 查找用户id的所有报名表
@@ -91,8 +94,9 @@ public interface RegisterMapper{
             @Result(property = "phoneNumber", column = "phone_number"),
             @Result(property = "userClass", column = "user_class"),
             @Result(property = "college", column = "college"),
+            @Result(property = "state", column = "state"),
     })
-    List<Register> selectByApplicantId(@Param("applicantId") int applicantId);
+    List<Register> selectByApplicantId(@Param("applicantId") String applicantId);
 
     /**
      * 把{@link Register}对象插入到register表中。
@@ -102,7 +106,7 @@ public interface RegisterMapper{
      */
     @Insert("<script>"+
             "INSERT IGNORE INTO "+
-            "register(id, activity_id, applicant_id, name, student_id, email, phone_number, user_class, college) "+
+            "register(id, activity_id, applicant_id, name, student_id, email, phone_number, user_class, college, state) "+
             "VALUES(#{id}, " +
             "<if test='#{activity}==null'> NULL </if> <if test='#{activity}!=null'>#{activity.id}</if>, " +
             "#{userId}, " +
@@ -111,7 +115,8 @@ public interface RegisterMapper{
             "#{email}, " +
             "#{phoneNumber}, " +
             "#{userClass}, " +
-            "#{college})"+
+            "#{college}, " +
+            "#{state})"+
             "</script>")
     int insert(Register register);
 
@@ -139,7 +144,8 @@ public interface RegisterMapper{
             "email =  #{email}, "+
             "phone_number = #{phoneNumber}, "+
             "user_class = #{userClass}, "+
-            "college = #{college} "+
+            "college = #{college} " +
+            "state = #{state} "+
             "WHERE id = #{register.id} "+
             "</script>")
     int update(Register register);

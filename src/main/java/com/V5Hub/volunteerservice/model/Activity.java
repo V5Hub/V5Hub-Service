@@ -1,4 +1,4 @@
-package com.V5Hub.volunteerservice.module;
+package com.V5Hub.volunteerservice.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,23 +28,43 @@ public class Activity {
      */
     private Date endTime;
     /**
+     * 活动结束时间
+     */
+    private Date registerDeadline;
+    /**
      * 活动地点
      */
     private String position;
+    /**
+     * 主办方名称
+     */
+    private String sponsorName;
     /**
      * 活动发起人
      */
     private User user;
     /**
-     * 活动描述
+     * 活动类型tag '-'连接
+     */
+    private String tags;
+    /**
+     * 活动简单描述
      */
     private String description;
     /**
-     * 活动海报
+     * 活动具体内容/推文
      */
-    private byte[] picture;
+    private String content;
+    /**
+     * 活动海报相对路径URL
+     */
+    private String picture;
+    /**
+     * 活动海报相对路径URL
+     */
+    private String pictureHorizontal;
     /**
      * 活动信息状态
      */
-    private String stateType;
+    private int stateType;
 }

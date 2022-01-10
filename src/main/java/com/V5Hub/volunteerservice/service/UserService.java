@@ -1,7 +1,7 @@
 package com.V5Hub.volunteerservice.service;
 
-import com.V5Hub.volunteerservice.module.User;
-import org.springframework.lang.Nullable;
+import com.V5Hub.volunteerservice.model.User;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -11,6 +11,7 @@ import java.util.List;
  * @author WarmCongee
  * @version 1.0
  */
+@Repository
 public interface UserService{
 
     /**
@@ -27,7 +28,7 @@ public interface UserService{
      * @param id 用户id
      * @return {@link List<User>} 数据库中所有user
      */
-    User selectById(int id);
+    User selectById(String id);
 
 
     /**
@@ -37,7 +38,7 @@ public interface UserService{
      * @param id 用户id
      * @return int 删除的行数
      */
-    int deleteById(int id);
+    int deleteById(String id);
 
     /**
      * 插入一个用户信息到数据库
@@ -63,5 +64,7 @@ public interface UserService{
      * @return int 更新的行数
      */
     int update(User user);
+
+    User newUserLogin(String openId);
 
 }

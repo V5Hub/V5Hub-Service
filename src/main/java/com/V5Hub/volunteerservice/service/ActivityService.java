@@ -1,8 +1,12 @@
 package com.V5Hub.volunteerservice.service;
 
-import com.V5Hub.volunteerservice.module.Activity;
-import com.V5Hub.volunteerservice.module.Register;
+import com.V5Hub.volunteerservice.model.Activity;
+import com.V5Hub.volunteerservice.model.Register;
+import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.mapping.FetchType;
+import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -11,6 +15,7 @@ import java.util.List;
  * @author WarmCongee
  * @version 1.0
  */
+@Repository
 public interface ActivityService {
     /**
      * 获取activity表所有活动数据的实体类列表{@link List<Activity>}
@@ -27,6 +32,15 @@ public interface ActivityService {
      * @return {@link Activity} 对应活动信息的实体类
      */
     Activity selectById(int id);
+
+
+    /**
+     * 查找与指定时间段有交集的活动
+     * @param startTime 指定时间段的开始时间
+     * @param endTime 指定时间段的结束时间
+     * @return {@link List<Activity>} 数据库中所有进行时间与给定时间有交集的activity
+     */
+    List<Activity> selectByDate(Date startTime, Date endTime);
 
 
     /**

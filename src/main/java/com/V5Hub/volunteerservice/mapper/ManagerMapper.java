@@ -1,7 +1,7 @@
 package com.V5Hub.volunteerservice.mapper;
 
 
-import com.V5Hub.volunteerservice.module.Manager;
+import com.V5Hub.volunteerservice.model.Manager;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
 
@@ -12,6 +12,7 @@ import java.util.List;
  *
  * @author WarmCongee
  */
+@Mapper
 public interface ManagerMapper {
     /**
      * 读取manager表中的所有行，并映射为Manager对象
@@ -40,7 +41,7 @@ public interface ManagerMapper {
             @Result(property = "activities", column = "id",
                     many = @Many(select = "com.V5Hub.volunteerservice.mapper.ActivityMapper.selectByManagerId", fetchType = FetchType.LAZY))
     })
-    Manager selectById(@Param("id") int id);
+    Manager selectById(@Param("id") String id);
 
     /**
      * 把{@link Manager}对象插入到manager表中。
@@ -62,7 +63,7 @@ public interface ManagerMapper {
      * @return 成功从表中的删除的行的数目，若没有删除任何行，则返回0。
      */
     @Delete("DELETE FROM manager WHERE id = #{id}")
-    int deleteById(@Param("id") int id);
+    int deleteById(@Param("id") String id);
 
 //    /**
 //     * 根据{@link Manager}对象的值更新对应的manager表中的行。

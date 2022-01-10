@@ -1,8 +1,7 @@
 package com.V5Hub.volunteerservice.service;
 
-import com.V5Hub.volunteerservice.module.Manager;
-import com.V5Hub.volunteerservice.module.Register;
-import com.V5Hub.volunteerservice.module.User;
+import com.V5Hub.volunteerservice.model.Register;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -11,6 +10,7 @@ import java.util.List;
  *
  * @version 1.0
  */
+@Repository
 public interface RegisterService {
     /**
      * 此方法中获得的User列表的每一个User都包含了所有报名表，所以数据量大的时候不建议调用此方法

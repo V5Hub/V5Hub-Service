@@ -1,10 +1,11 @@
 package com.V5Hub.volunteerservice.mapper;
 
 
-import com.V5Hub.volunteerservice.module.Activity;
+import com.V5Hub.volunteerservice.model.Activity;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,10 +28,15 @@ public interface ActivityMapper {
             @Result(property = "name", column = "name"),
             @Result(property = "startTime", column = "start_time"),
             @Result(property = "endTime", column = "end_time"),
+            @Result(property = "registerDeadline", column = "register_deadline"),
             @Result(property = "position", column = "position"),
+            @Result(property = "sponsorName", column = "sponsor_name"),
             @Result(property = "user", column = "sponsor_id", one = @One(select = "com.V5Hub.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
+            @Result(property = "tags", column = "tags"),
             @Result(property = "description", column = "description"),
+            @Result(property = "content", column = "content"),
             @Result(property = "picture", column = "picture"),
+            @Result(property = "pictureHorizontal", column = "picture_horizontal"),
             @Result(property = "stateType", column = "state_type"),
     })
     List<Activity> selectAll();
@@ -47,13 +53,44 @@ public interface ActivityMapper {
             @Result(property = "name", column = "name"),
             @Result(property = "startTime", column = "start_time"),
             @Result(property = "endTime", column = "end_time"),
+            @Result(property = "registerDeadline", column = "register_deadline"),
             @Result(property = "position", column = "position"),
+            @Result(property = "sponsorName", column = "sponsor_name"),
             @Result(property = "user", column = "sponsor_id", one = @One(select = "com.V5Hub.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
+            @Result(property = "tags", column = "tags"),
             @Result(property = "description", column = "description"),
+            @Result(property = "content", column = "content"),
             @Result(property = "picture", column = "picture"),
+            @Result(property = "pictureHorizontal", column = "picture_horizontal"),
             @Result(property = "stateType", column = "state_type"),
     })
     Activity selectById(@Param("id") int id);
+
+
+    /**
+     * 查找与指定时间段有交集的活动
+     * @param startTime 指定时间段的开始时间
+     * @param endTime 指定时间段的结束时间
+     * @return (start_time, end_time)与(#{startTime}, #{endTime})有交集的Activity对象列表
+     */
+    @Select("SELECT * FROM activity where not ((end_time < #{startTime}) or (start_time > #{endTime})")
+    @Results({
+            @Result(id = true, property = "id", column = "id"),
+            @Result(property = "name", column = "name"),
+            @Result(property = "startTime", column = "start_time"),
+            @Result(property = "endTime", column = "end_time"),
+            @Result(property = "registerDeadline", column = "register_deadline"),
+            @Result(property = "position", column = "position"),
+            @Result(property = "sponsorName", column = "sponsor_name"),
+            @Result(property = "user", column = "sponsor_id", one = @One(select = "com.V5Hub.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
+            @Result(property = "tags", column = "tags"),
+            @Result(property = "description", column = "description"),
+            @Result(property = "content", column = "content"),
+            @Result(property = "picture", column = "picture"),
+            @Result(property = "pictureHorizontal", column = "picture_horizontal"),
+            @Result(property = "stateType", column = "state_type"),
+    })
+    List<Activity> selectByDate(@Param("startTime") Date startTime, @Param("endTime") Date endTime);
 
 
     /**
@@ -67,13 +104,18 @@ public interface ActivityMapper {
             @Result(property = "name", column = "name"),
             @Result(property = "startTime", column = "start_time"),
             @Result(property = "endTime", column = "end_time"),
+            @Result(property = "registerDeadline", column = "register_deadline"),
             @Result(property = "position", column = "position"),
+            @Result(property = "sponsorName", column = "sponsor_name"),
             @Result(property = "user", column = "sponsor_id", one = @One(select = "com.V5Hub.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
+            @Result(property = "tags", column = "tags"),
             @Result(property = "description", column = "description"),
+            @Result(property = "content", column = "content"),
             @Result(property = "picture", column = "picture"),
+            @Result(property = "pictureHorizontal", column = "picture_horizontal"),
             @Result(property = "stateType", column = "state_type"),
     })
-    List<Activity> selectByManagerId(@Param("managerId") int managerId);
+    List<Activity> selectByManagerId(@Param("managerId") String managerId);
 
     /**
      * 把{@link Activity}对象插入到activity表中。
@@ -83,10 +125,10 @@ public interface ActivityMapper {
      */
     @Insert("<script>"+
             "INSERT IGNORE INTO "+
-            "activity(id, name, start_time, end_time, position, sponsor_id, description, picture, state_type) "+
-            "VALUES(#{id}, #{name}, #{startTime}, #{endTime}, #{position}, " +
+            "activity(id, name, start_time, end_time, register_deadline, position, sponsor_name, sponsor_id, tags, description, content, picture, picture_horizontal, state_type) "+
+            "VALUES(#{id}, #{name}, #{startTime}, #{endTime}, #{registerDeadline}, #{position}, #{sponsorName}," +
             "<if test='#{user}==null'> NULL </if> <if test='#{user}!=null'>#{user.id}</if>, " +
-            "#{description}, #{picture}, #{stateType})"+
+            "#{tags}, #{description}, #{content}, #{picture}, #{pictureHorizontal}, #{stateType})"+
             "</script>")
     int insert(Activity activity);
 
@@ -107,13 +149,18 @@ public interface ActivityMapper {
      */
     @Update("<script> "+
             "UPDATE activity SET "+
-            "name = #{name},"+
-            "start_time = #{startTime},"+
-            "end_time = #{endTime},"+
-            "position = #{position},"+
-            "sponsor_id = <if test='#{user}==null'> NULL </if> <if test='#{user}!=null'>#{user.id}</if>,"+
+            "name = #{name}, "+
+            "start_time = #{startTime}, "+
+            "end_time = #{endTime}, " +
+            "register_deadline = #{registerDeadline}, "+
+            "position = #{position}, " +
+            "sponsor_name = #{sponsorName}, "+
+            "sponsor_id = <if test='#{user}==null'> NULL </if> <if test='#{user}!=null'>#{user.id}</if>, " +
+            "tags = #{tags}, "+
             "description = #{description},"+
+            "content = #{content}, "+
             "picture = #{picture},"+
+            "picture_horizontal = #{pictureHorizontal}, "+
             "state_type = #{stateType} "+
             "WHERE id = #{activity.id}"+
             " </script>")

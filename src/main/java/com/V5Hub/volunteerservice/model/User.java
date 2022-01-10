@@ -1,4 +1,4 @@
-package com.V5Hub.volunteerservice.module;
+package com.V5Hub.volunteerservice.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,7 +13,7 @@ public class User {
     /**
      * 唯一id
      */
-    private int id;
+    private String id;
     /**
      * 姓名
      */
