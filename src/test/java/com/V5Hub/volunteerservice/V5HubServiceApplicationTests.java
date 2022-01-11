@@ -60,7 +60,7 @@ public class V5HubServiceApplicationTests {
         List<Activity> activityList = activityMapper.selectAll();
         activityList.forEach(System.out::println);
 
-        Activity activity = new Activity(5,"体育活动",null,null,null,null,null
+        Activity activity = new Activity(5,"体育活动",null,null,null,null,null,null
                 ,userMapper.selectById("1"),null,null,null,null, null,1);
         activityMapper.insert(activity);
         activityList = activityMapper.selectAll();

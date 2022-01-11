@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS activity (
     end_time DATETIME,
     register_deadline DATETIME,
     position VARCHAR(60),
+    level VARCHAR(30),
     sponsor_name VARCHAR(30),
     sponsor_id VARCHAR(30),
     tags VARCHAR(30),

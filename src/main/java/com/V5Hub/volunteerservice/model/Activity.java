@@ -36,6 +36,10 @@ public class Activity {
      */
     private String position;
     /**
+     * 活动级别
+     */
+    private String level;
+    /**
      * 主办方名称
      */
     private String sponsorName;
