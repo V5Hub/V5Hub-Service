@@ -35,8 +35,13 @@ public class ActivityController {
                     date.get(Calendar.YEAR), date.get(Calendar.MONTH) + 1, date.get(Calendar.DAY_OF_MONTH)));
             Date pre = date.getTime();
             date.add(Calendar.DATE, 1);
-            List<Activity> activities = activityService.selectByDate(pre, date.getTime());
-            // TODO: 根据用户对tag的订阅情况对activity.tags做进一步处理
+            List<Activity> activityList = activityService.selectByDate(pre, date.getTime());
+            List<HashMap<String, Object>> activities = new ArrayList<>();
+            for (Activity activity : activityList) {
+                HashMap<String, Object> activityJson = activity.parseDetailsData();
+                // TODO: 根据用户对tag的订阅情况对activity.tags做进一步处理
+                activities.add(activityJson);
+            }
             item.put("activities", activities);
             data.add(item);
         }
