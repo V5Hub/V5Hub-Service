@@ -38,7 +38,7 @@ public class ActivityController {
             List<Activity> activityList = activityService.selectByDate(pre, date.getTime());
             List<HashMap<String, Object>> activities = new ArrayList<>();
             for (Activity activity : activityList) {
-                HashMap<String, Object> activityJson = activity.parseDetailsData();
+                HashMap<String, Object> activityJson = activity.parseSimpleData();
                 // TODO: 根据用户对tag的订阅情况对activity.tags做进一步处理
                 activities.add(activityJson);
             }
