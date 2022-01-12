@@ -43,13 +43,13 @@ public class Activity {
      */
     private String level;
     /**
-     * 主办方名称
+     * 活动发起Manager的ID
      */
-    private String sponsorName;
+    private String managerId;
     /**
-     * 活动发起人
+     * 主办方组织
      */
-    private User user;
+    private Sponsor sponsor;
     /**
      * 活动类型tag '-'连接
      */
@@ -87,8 +87,8 @@ public class Activity {
         res.put("stateType", stateType);
 
         HashMap<String, Object> sponsor = new HashMap<>();
-        sponsor.put("id", user.getId());
-        sponsor.put("name", sponsorName);
+        sponsor.put("id", this.sponsor.getId());
+        sponsor.put("name", this.sponsor.getName());
         res.put("sponsor", sponsor);
 
         ArrayList<HashMap<String, Object>> tagArray = new ArrayList<>();

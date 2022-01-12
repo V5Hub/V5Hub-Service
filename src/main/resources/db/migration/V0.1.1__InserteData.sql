@@ -8,7 +8,7 @@ VALUES ('1','test1','2020302029','1979557180@qq.com','12345678901','test1','软�
 INSERT INTO manager(manager_id,deleted)
     VALUE ('1',false),('2',false);
 
-INSERT INTO activity(id,name,position,sponsor_id,description,state_type)
+INSERT INTO activity(id,name,position,manager_id,description,state_type)
 VALUE (1,'程序星大赛','实验大楼','1','编程',1),
       (2,'足基元旦杯','实验大楼','2','编程',1),
       (3,'文娱活动','实验大楼','2','文娱',1);

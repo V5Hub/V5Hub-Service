@@ -24,6 +24,20 @@ CREATE TABLE IF NOT EXISTS manager (
     PRIMARY KEY (manager_id)
 ) DEFAULT CHARSET=utf8;
 
+CREATE TABLE IF NOT EXISTS sponsor (
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(50) NOT NULL,
+    picture VARCHAR(60), -- URL
+    PRIMARY KEY (id)
+) DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS manager_sponsor (
+    manager_id VARCHAR(30) NOT NULL,
+    sponsor_id INT NOT NULL,
+    PRIMARY KEY (manager_id, sponsor_id),
+    FOREIGN KEY (manager_id) REFERENCES manager (manager_id),
+    FOREIGN KEY (sponsor_id) REFERENCES sponsor (id)
+) DEFAULT CHARSET=utf8;
 
 -- tag content  pic->delete
 CREATE TABLE IF NOT EXISTS activity (
@@ -34,7 +48,7 @@ CREATE TABLE IF NOT EXISTS activity (
     register_deadline DATETIME,
     position VARCHAR(60),
     level VARCHAR(30),
-    sponsor_name VARCHAR(30),
+    manager_id VARCHAR(30),
     sponsor_id VARCHAR(30),
     tags VARCHAR(30),
     description TEXT,

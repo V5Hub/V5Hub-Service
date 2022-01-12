@@ -106,8 +106,8 @@ public interface RegisterMapper{
      */
     @Insert("<script>"+
             "INSERT IGNORE INTO "+
-            "register(id, activity_id, applicant_id, name, student_id, email, phone_number, user_class, college, state) "+
-            "VALUES(#{id}, " +
+            "register(activity_id, applicant_id, name, student_id, email, phone_number, user_class, college, state) "+
+            "VALUES( " +
             "<if test='#{activity}==null'> NULL </if> <if test='#{activity}!=null'>#{activity.id}</if>, " +
             "#{userId}, " +
             "#{name}, " +

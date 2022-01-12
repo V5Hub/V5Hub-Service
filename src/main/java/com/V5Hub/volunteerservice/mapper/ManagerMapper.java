@@ -23,8 +23,7 @@ public interface ManagerMapper {
     @Results({
             @Result(id = true, property = "id", column = "id",
                     one = @One(select = "com.V5Hub.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
-            @Result(property = "activities", column = "id",
-                    many = @Many(select = "com.V5Hub.volunteerservice.mapper.ActivityMapper.selectByManagerId", fetchType = FetchType.LAZY))
+            @Result(property = "deleted", column = "deleted")
     })
     List<Manager> selectAll();
 
@@ -38,8 +37,7 @@ public interface ManagerMapper {
     @Results({
             @Result(id = true, property = "id", column = "id",
                     one = @One(select = "com.V5Hub.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
-            @Result(property = "activities", column = "id",
-                    many = @Many(select = "com.V5Hub.volunteerservice.mapper.ActivityMapper.selectByManagerId", fetchType = FetchType.LAZY))
+            @Result(property = "deleted", column = "deleted")
     })
     Manager selectById(@Param("id") String id);
 

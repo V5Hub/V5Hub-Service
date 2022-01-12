@@ -31,8 +31,8 @@ public interface ActivityMapper {
             @Result(property = "registerDeadline", column = "register_deadline"),
             @Result(property = "position", column = "position"),
             @Result(property = "level", column = "level"),
-            @Result(property = "sponsorName", column = "sponsor_name"),
-            @Result(property = "user", column = "sponsor_id", one = @One(select = "com.V5Hub.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
+            @Result(property = "managerId", column = "manager_id"),
+            @Result(property = "sponsor", column = "sponsor_id", one = @One(select = "com.V5Hub.volunteerservice.mapper.SponsorMapper.selectById", fetchType = FetchType.LAZY)),
             @Result(property = "tags", column = "tags"),
             @Result(property = "description", column = "description"),
             @Result(property = "content", column = "content"),
@@ -57,8 +57,8 @@ public interface ActivityMapper {
             @Result(property = "registerDeadline", column = "register_deadline"),
             @Result(property = "position", column = "position"),
             @Result(property = "level", column = "level"),
-            @Result(property = "sponsorName", column = "sponsor_name"),
-            @Result(property = "user", column = "sponsor_id", one = @One(select = "com.V5Hub.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
+            @Result(property = "managerId", column = "manager_id"),
+            @Result(property = "sponsor", column = "sponsor_id", one = @One(select = "com.V5Hub.volunteerservice.mapper.SponsorMapper.selectById", fetchType = FetchType.LAZY)),
             @Result(property = "tags", column = "tags"),
             @Result(property = "description", column = "description"),
             @Result(property = "content", column = "content"),
@@ -84,8 +84,8 @@ public interface ActivityMapper {
             @Result(property = "registerDeadline", column = "register_deadline"),
             @Result(property = "position", column = "position"),
             @Result(property = "level", column = "level"),
-            @Result(property = "sponsorName", column = "sponsor_name"),
-            @Result(property = "user", column = "sponsor_id", one = @One(select = "com.V5Hub.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
+            @Result(property = "managerId", column = "manager_id"),
+            @Result(property = "sponsor", column = "sponsor_id", one = @One(select = "com.V5Hub.volunteerservice.mapper.SponsorMapper.selectById", fetchType = FetchType.LAZY)),
             @Result(property = "tags", column = "tags"),
             @Result(property = "description", column = "description"),
             @Result(property = "content", column = "content"),
@@ -101,7 +101,7 @@ public interface ActivityMapper {
      * @param managerId 主办方管理员id
      * @return sponsor_id=#{managerId}的Activity对象列表
      */
-    @Select("SELECT * FROM activity where sponsor_id = #{managerId}")
+    @Select("SELECT * FROM activity where manager_id = #{managerId}")
     @Results({
             @Result(id = true, property = "id", column = "id"),
             @Result(property = "name", column = "name"),
@@ -110,8 +110,8 @@ public interface ActivityMapper {
             @Result(property = "registerDeadline", column = "register_deadline"),
             @Result(property = "position", column = "position"),
             @Result(property = "level", column = "level"),
-            @Result(property = "sponsorName", column = "sponsor_name"),
-            @Result(property = "user", column = "sponsor_id", one = @One(select = "com.V5Hub.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
+            @Result(property = "managerId", column = "manager_id"),
+            @Result(property = "sponsor", column = "sponsor_id", one = @One(select = "com.V5Hub.volunteerservice.mapper.SponsorMapper.selectById", fetchType = FetchType.LAZY)),
             @Result(property = "tags", column = "tags"),
             @Result(property = "description", column = "description"),
             @Result(property = "content", column = "content"),
@@ -129,9 +129,9 @@ public interface ActivityMapper {
      */
     @Insert("<script>"+
             "INSERT IGNORE INTO "+
-            "activity(id, name, start_time, end_time, register_deadline, position, level, sponsor_name, sponsor_id, tags, description, content, picture, picture_horizontal, state_type) "+
-            "VALUES(#{id}, #{name}, #{startTime}, #{endTime}, #{registerDeadline}, #{position}, #{level}, #{sponsorName}," +
-            "<if test='#{user}==null'> NULL </if> <if test='#{user}!=null'>#{user.id}</if>, " +
+            "activity(name, start_time, end_time, register_deadline, position, level, manager_id, sponsor_id, tags, description, content, picture, picture_horizontal, state_type) "+
+            "VALUES(#{name}, #{startTime}, #{endTime}, #{registerDeadline}, #{position}, #{level}, #{managerId}," +
+            "<if test='#{sponsor}==null'> NULL </if> <if test='#{sponsor}!=null'>#{sponsor.id}</if>, " +
             "#{tags}, #{description}, #{content}, #{picture}, #{pictureHorizontal}, #{stateType})"+
             "</script>")
     int insert(Activity activity);
@@ -159,8 +159,8 @@ public interface ActivityMapper {
             "register_deadline = #{registerDeadline}, "+
             "position = #{position}, " +
             "level = #{level}, " +
-            "sponsor_name = #{sponsorName}, "+
-            "sponsor_id = <if test='#{user}==null'> NULL </if> <if test='#{user}!=null'>#{user.id}</if>, " +
+            "manager_id = #{managerId}, "+
+            "sponsor_id = <if test='#{sponsor}==null'> NULL </if> <if test='#{sponsor}!=null'>#{sponsor.id}</if>, " +
             "tags = #{tags}, "+
             "description = #{description},"+
             "content = #{content}, "+
