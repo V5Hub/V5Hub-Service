@@ -13,7 +13,11 @@ public class User {
     /**
      * 唯一id
      */
-    private String id;
+    private int id;
+    /**
+     * openid
+     */
+    private String openid;
     /**
      * 姓名
      */

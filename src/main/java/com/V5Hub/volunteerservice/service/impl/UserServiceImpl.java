@@ -53,6 +53,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User newUserLogin(String openId){
-        return new User(openId,"",null,null,null,null,null,false,null,null);
+        return new User(0, openId,"",null,null,null,null,null,false,null,null);
     }
 }
