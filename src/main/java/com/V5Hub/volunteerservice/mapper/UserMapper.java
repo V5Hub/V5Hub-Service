@@ -52,8 +52,8 @@ public interface UserMapper {
             @Result(property = "college", column = "college"),
             @Result(property = "deleted", column = "deleted"),
             @Result(property = "picture", column = "picture"),
-            @Result(property = "registers", column = "id",
-                    many = @Many(select = "com.V5Hub.volunteerservice.mapper.RegisterMapper.selectByApplicantId", fetchType = FetchType.LAZY)),
+            /*@Result(property = "registers", column = "id",
+                    many = @Many(select = "com.V5Hub.volunteerservice.mapper.RegisterMapper.selectByApplicantId", fetchType = FetchType.LAZY)),*/
     })
     User selectById(@Param("id") int id);
 
@@ -75,8 +75,8 @@ public interface UserMapper {
             @Result(property = "college", column = "college"),
             @Result(property = "deleted", column = "deleted"),
             @Result(property = "picture", column = "picture"),
-            @Result(property = "registers", column = "id",
-                    many = @Many(select = "com.V5Hub.volunteerservice.mapper.RegisterMapper.selectByApplicantId", fetchType = FetchType.LAZY)),
+            /*@Result(property = "registers", column = "id",
+                    many = @Many(select = "com.V5Hub.volunteerservice.mapper.RegisterMapper.selectByApplicantId", fetchType = FetchType.LAZY)),*/
     })
     User selectByOpenid(@Param("openid") String openid);
 

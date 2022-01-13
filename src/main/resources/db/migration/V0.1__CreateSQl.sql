@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS user (
 CREATE TABLE IF NOT EXISTS manager (
     id INT NOT NULL,
     deleted BOOLEAN NOT NULL,
-    FOREIGN KEY (id) REFERENCES user (id),
+    FOREIGN KEY (id) REFERENCES user (id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 ) DEFAULT CHARSET=utf8;
 
@@ -37,8 +37,8 @@ CREATE TABLE IF NOT EXISTS manager_sponsor (
     manager_id INT NOT NULL,
     sponsor_id INT NOT NULL,
     PRIMARY KEY (manager_id, sponsor_id),
-    FOREIGN KEY (manager_id) REFERENCES manager (id),
-    FOREIGN KEY (sponsor_id) REFERENCES sponsor (id)
+    FOREIGN KEY (manager_id) REFERENCES manager (id) ON DELETE CASCADE,
+    FOREIGN KEY (sponsor_id) REFERENCES sponsor (id) ON DELETE CASCADE
 ) DEFAULT CHARSET=utf8;
 
 -- tag content  pic->delete
@@ -73,8 +73,8 @@ CREATE TABLE IF NOT EXISTS register (
     user_class VARCHAR(30),
     college VARCHAR(30),
     state INT NOT NULL,
-    FOREIGN KEY (activity_id) REFERENCES activity (id),
-    FOREIGN KEY (applicant_id) REFERENCES user (id),
+    FOREIGN KEY (activity_id) REFERENCES activity (id) ON DELETE CASCADE,
+    FOREIGN KEY (applicant_id) REFERENCES user (id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 ) DEFAULT CHARSET=utf8;
 
@@ -88,24 +88,24 @@ CREATE TABLE IF NOT EXISTS tag (
 CREATE TABLE IF NOT EXISTS subscribe_sponsor (
     user_id INT NOT NULL,
     sponsor_id INT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES user (id),
-    FOREIGN KEY (sponsor_id) REFERENCES sponsor (id),
+    FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE CASCADE,
+    FOREIGN KEY (sponsor_id) REFERENCES sponsor (id) ON DELETE CASCADE,
     PRIMARY KEY (user_id, sponsor_id)
 ) DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS subscribe_tag (
     user_id INT NOT NULL,
     tag_id INT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES user (id),
-    FOREIGN KEY (tag_id) REFERENCES tag (id),
+    FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE CASCADE,
+    FOREIGN KEY (tag_id) REFERENCES tag (id) ON DELETE CASCADE,
     PRIMARY KEY (user_id, tag_id)
 ) DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS activity_tag (
     activity_id INT NOT NULL,
     tag_id INT NOT NULL,
-    FOREIGN KEY (activity_id) REFERENCES activity (id),
-    FOREIGN KEY (tag_id) REFERENCES tag (id),
+    FOREIGN KEY (activity_id) REFERENCES activity (id) ON DELETE CASCADE,
+    FOREIGN KEY (tag_id) REFERENCES tag (id) ON DELETE CASCADE,
     PRIMARY KEY (activity_id, tag_id)
 ) DEFAULT CHARSET=utf8;
 
