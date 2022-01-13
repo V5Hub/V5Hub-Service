@@ -23,13 +23,33 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User selectById(String id) {
+    public User selectById(int id) {
         return userMapper.selectById(id);
     }
 
     @Override
-    public int deleteById(String id) {
+    public User selectByOpenid(String openid) {
+        return userMapper.selectByOpenid(openid);
+    }
+
+    @Override
+    public User selectByIdWithRegisters(int id) {
+        return userMapper.selectByIdWithRegisters(id);
+    }
+
+    @Override
+    public User selectByOpenidWithRegisters(String openid) {
+        return userMapper.selectByOpenidWithRegisters(openid);
+    }
+
+    @Override
+    public int deleteById(int id) {
         return userMapper.deleteById(id);
+    }
+
+    @Override
+    public int deleteByOpenid(String openid) {
+        return userMapper.deleteByOpenid(openid);
     }
 
     @Override
@@ -53,6 +73,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User newUserLogin(String openId){
-        return new User(openId,"",null,null,null,null,null,false,null,null);
+        return new User(0, openId,"",null,null,null,null,null,false,null,null);
     }
 }

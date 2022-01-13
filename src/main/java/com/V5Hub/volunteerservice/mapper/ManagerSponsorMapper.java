@@ -31,7 +31,7 @@ public interface ManagerSponsorMapper {
             @Result(property = "name", column = "name"),
             @Result(property = "picture", column = "picture"),
     })
-    List<Sponsor> selectByManagerId(@Param("manager_id") String manager_id);
+    List<Sponsor> selectByManagerId(@Param("manager_id") int manager_id);
 
     /**
      * 根据sponsor的id来选出与该sponsor关联的所有manager。
@@ -42,7 +42,7 @@ public interface ManagerSponsorMapper {
     @Select("SELECT * FROM manager JOIN " +
             "(SELECT * FROM manager_sponsor " +
             "WHERE sponsor_id = #{sponsor_id}) AS s_manager " +
-            "ON s_manager.manager_id = manager.manager_id ")
+            "ON s_manager.manager_id = manager.id ")
     @Results({
             @Result(id = true, property = "id", column = "id",
                     one = @One(select = "com.V5Hub.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
@@ -58,7 +58,7 @@ public interface ManagerSponsorMapper {
      * @return 成功插入到表中的行的数目，若插入失败或插入被忽略，则返回0。
      */
     @Insert("INSERT IGNORE INTO manager_sponsor VALUES(#{manager_id}, #{sponsor_id})")
-    int insert(@Param("manager_id") String manager_id, @Param("sponsor_id") int sponsor_id);
+    int insert(@Param("manager_id") int manager_id, @Param("sponsor_id") int sponsor_id);
 
     /**
      * 把某一对 department-user 关系从department_user表中删除。
@@ -67,7 +67,7 @@ public interface ManagerSponsorMapper {
      * @return 成功从表中的删除的行的数目，若没有删除任何行，则返回0。
      */
     @Delete("DELETE FROM manager_sponsor WHERE manager_id = #{manager_id} AND sponsor_id = #{sponsor_id}")
-    int delete(@Param("manager_id") String manager_id, @Param("sponsor_id") int sponsor_id);
+    int delete(@Param("manager_id") int manager_id, @Param("sponsor_id") int sponsor_id);
 
     /**
      * 根据manager的id来删除与该manager关联的所有连接关系。
@@ -76,7 +76,7 @@ public interface ManagerSponsorMapper {
      * @return 成功从表中的删除的行的数目，若没有删除任何行，则返回0。
      */
     @Delete("DELETE FROM manager_sponsor WHERE manager_id = #{manager_id}")
-    int deleteByManagerId(@Param("manager_id") String manager_id);
+    int deleteByManagerId(@Param("manager_id") int manager_id);
 
     /**
      * 根据sponsor的id来删除与该sponsor关联的所有连接关系。

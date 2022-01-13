@@ -9,6 +9,7 @@ import javax.management.ObjectName;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -45,15 +46,15 @@ public class Activity {
     /**
      * 活动发起Manager的ID
      */
-    private String managerId;
+    private int managerId;
     /**
      * 主办方组织
      */
     private Sponsor sponsor;
     /**
-     * 活动类型tag '-'连接
+     * 活动tag
      */
-    private String tags;
+    private List<Tag> tags;
     /**
      * 活动简单描述
      */
@@ -92,12 +93,11 @@ public class Activity {
         res.put("sponsor", sponsor);
 
         ArrayList<HashMap<String, Object>> tagArray = new ArrayList<>();
-        String[] tagTexts = tags.split("-");
-        for (String tagText : tagTexts) {    // 记得在之后的操作中：1.只保留（用户更关注的）前三个tag, 2.为subscribe赋值
-            HashMap<String, Object> tag = new HashMap<>();
-            tag.put("text", tagText);
-            tag.put("subscribe", false);
-            tagArray.add(tag);
+        for (Tag tag : tags) {    // 记得在之后的操作中：1.只保留（用户更关注的）前三个tag, 2.为subscribe赋值
+            HashMap<String, Object> tagMap = new HashMap<>();
+            tagMap.put("text", tag.getText());
+            tagMap.put("subscribe", false);
+            tagArray.add(tagMap);
         }
         res.put("tags", tagArray);
 

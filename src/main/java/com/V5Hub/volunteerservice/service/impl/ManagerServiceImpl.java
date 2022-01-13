@@ -29,12 +29,12 @@ public class ManagerServiceImpl implements ManagerService {
     }
 
     @Override
-    public Manager selectById(String id) {
+    public Manager selectById(int id) {
         return managerMapper.selectById(id);
     }
 
     @Override
-    public int deleteById(String id) {
+    public int deleteById(int id) {
         return managerMapper.deleteById(id);
     }
 

@@ -79,7 +79,7 @@ public class LoginController {
             if (openid == null || session_key == null) {
                 return Result.fail(null, 5000, "login failed");
             }
-            else if (userService.selectById(openid) == null) {
+            else if (userService.selectByOpenid(openid) == null) {
                 User user = userService.newUserLogin(openid);
                 int count = userService.insert(user);
                 if (count >= 0) {
@@ -89,7 +89,7 @@ public class LoginController {
                 }
             }
             else {
-                return Result.success(userService.selectById(openid));
+                return Result.success(userService.selectByOpenid(openid));
             }
         } catch (Exception e) {
             return Result.fail(null, 6000, e.getMessage());
