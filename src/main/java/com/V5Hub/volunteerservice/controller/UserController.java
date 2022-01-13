@@ -23,7 +23,7 @@ public class UserController {
     @RequestMapping(value = "/wx/user", method = RequestMethod.GET)
     @ResponseBody
     public Result getInfo(@RequestParam(value = "openid", defaultValue = "") String openid) {
-        User user = userService.selectById(openid);
+        User user = userService.selectByOpenid(openid);
         if (user == null) {
             return new Result(null, 404, "Invalid openid.");
         }
@@ -44,7 +44,7 @@ public class UserController {
                           @RequestParam(value = "email", defaultValue = "") String email,
                           @RequestParam(value = "phoneNumber", defaultValue = "") String phoneNumber,
                           @RequestParam(value = "college", defaultValue = "") String college) {
-        User user = userService.selectById(openid);
+        User user = userService.selectByOpenid(openid);
         if (user == null) {
             return new Result(null, 404, "Invalid openid.");
         }

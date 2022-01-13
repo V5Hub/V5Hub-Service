@@ -78,7 +78,7 @@ public interface UserMapper {
             @Result(property = "registers", column = "id",
                     many = @Many(select = "com.V5Hub.volunteerservice.mapper.RegisterMapper.selectByApplicantId", fetchType = FetchType.LAZY)),
     })
-    User selectById(@Param("openid") String openid);
+    User selectByOpenid(@Param("openid") String openid);
 
     /**
      * 把{@link User}对象插入到user表中。
@@ -107,7 +107,7 @@ public interface UserMapper {
      * @return 成功从表中的删除的行的数目，若没有删除任何行，则返回0。
      */
     @Delete("DELETE FROM user WHERE openid = #{openid}")
-    int deleteById(@Param("openid") String openid);
+    int deleteByOpenid(@Param("openid") String openid);
 
     /**
      * 根据{@link User}对象的值更新对应的user表中的行。
