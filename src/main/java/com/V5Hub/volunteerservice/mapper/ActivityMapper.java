@@ -31,7 +31,7 @@ public interface ActivityMapper {
             @Result(property = "registerDeadline", column = "register_deadline"),
             @Result(property = "position", column = "position"),
             @Result(property = "level", column = "level"),
-            @Result(property = "manager", column = "manager_id", one = @One(select = "com.V5Hub.volunteerservice.mapper.ManagerMapper.selectById", fetchType = FetchType.LAZY)),
+            @Result(property = "managerId", column = "manager_id"),
             @Result(property = "sponsor", column = "sponsor_id", one = @One(select = "com.V5Hub.volunteerservice.mapper.SponsorMapper.selectById", fetchType = FetchType.LAZY)),
             @Result(property = "tags", column = "tag_id", many = @Many(select = "com.V5Hub.volunteerservice.mapper.TagMapper.selectById", fetchType = FetchType.LAZY)),
             @Result(property = "description", column = "description"),
