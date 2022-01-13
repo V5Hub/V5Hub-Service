@@ -33,6 +33,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User selectByIdWithRegisters(int id) {
+        return userMapper.selectByIdWithRegisters(id);
+    }
+
+    @Override
+    public User selectByOpenidWithRegisters(String openid) {
+        return userMapper.selectByOpenidWithRegisters(openid);
+    }
+
+    @Override
     public int deleteById(int id) {
         return userMapper.deleteById(id);
     }

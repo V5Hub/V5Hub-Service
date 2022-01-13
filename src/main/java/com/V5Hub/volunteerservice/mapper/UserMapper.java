@@ -52,8 +52,6 @@ public interface UserMapper {
             @Result(property = "college", column = "college"),
             @Result(property = "deleted", column = "deleted"),
             @Result(property = "picture", column = "picture"),
-            /*@Result(property = "registers", column = "id",
-                    many = @Many(select = "com.V5Hub.volunteerservice.mapper.RegisterMapper.selectByApplicantId", fetchType = FetchType.LAZY)),*/
     })
     User selectById(@Param("id") int id);
 
@@ -75,10 +73,55 @@ public interface UserMapper {
             @Result(property = "college", column = "college"),
             @Result(property = "deleted", column = "deleted"),
             @Result(property = "picture", column = "picture"),
-            /*@Result(property = "registers", column = "id",
-                    many = @Many(select = "com.V5Hub.volunteerservice.mapper.RegisterMapper.selectByApplicantId", fetchType = FetchType.LAZY)),*/
     })
     User selectByOpenid(@Param("openid") String openid);
+
+
+    /**
+     * 选出user表中对应id的行，并映射成{@link User}对象。
+     *
+     * @param id 要选出的用户的id。
+     * @return user表中对应的用户。包含所有报名表对象
+     */
+    @Select("SELECT * FROM user WHERE id = #{id}")
+    @Results({
+            @Result(id = true, property = "id", column = "id"),
+            @Result(property = "openid", column = "openid"),
+            @Result(property = "name", column = "name"),
+            @Result(property = "studentId", column = "student_id"),
+            @Result(property = "email", column = "email"),
+            @Result(property = "phoneNumber", column = "phone_number"),
+            @Result(property = "password", column = "password"),
+            @Result(property = "college", column = "college"),
+            @Result(property = "deleted", column = "deleted"),
+            @Result(property = "picture", column = "picture"),
+            @Result(property = "registers", column = "id",
+                    many = @Many(select = "com.V5Hub.volunteerservice.mapper.RegisterMapper.selectByApplicantId", fetchType = FetchType.LAZY)),
+    })
+    User selectByIdWithRegisters(@Param("id") int id);
+
+    /**
+     * 选出user表中对应openid的行，并映射成{@link User}对象。
+     *
+     * @param openid 要选出的用户的openid。
+     * @return user表中对应的用户。包含所有报名表对象
+     */
+    @Select("SELECT * FROM user WHERE openid = #{openid}")
+    @Results({
+            @Result(id = true, property = "id", column = "id"),
+            @Result(property = "openid", column = "openid"),
+            @Result(property = "name", column = "name"),
+            @Result(property = "studentId", column = "student_id"),
+            @Result(property = "email", column = "email"),
+            @Result(property = "phoneNumber", column = "phone_number"),
+            @Result(property = "password", column = "password"),
+            @Result(property = "college", column = "college"),
+            @Result(property = "deleted", column = "deleted"),
+            @Result(property = "picture", column = "picture"),
+            @Result(property = "registers", column = "id",
+                    many = @Many(select = "com.V5Hub.volunteerservice.mapper.RegisterMapper.selectByApplicantId", fetchType = FetchType.LAZY)),
+    })
+    User selectByOpenidWithRegisters(@Param("openid") String openid);
 
     /**
      * 把{@link User}对象插入到user表中。
