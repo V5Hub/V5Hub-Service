@@ -50,7 +50,7 @@ public interface ActivityTagMapper {
             @Result(property = "level", column = "level"),
             @Result(property = "managerId", column = "manager_id"),
             @Result(property = "sponsor", column = "sponsor_id", one = @One(select = "com.V5Hub.volunteerservice.mapper.SponsorMapper.selectById", fetchType = FetchType.LAZY)),
-            @Result(property = "tags", column = "tag_id", many = @Many(select = "com.V5Hub.volunteerservice.mapper.ActivityTagMapper.selectByActivityId", fetchType = FetchType.LAZY)),
+            @Result(property = "tags", column = "id", many = @Many(select = "com.V5Hub.volunteerservice.mapper.ActivityTagMapper.selectByActivityId", fetchType = FetchType.LAZY)),
             @Result(property = "description", column = "description"),
             @Result(property = "content", column = "content"),
             @Result(property = "picture", column = "picture"),
