@@ -1,7 +1,10 @@
 package com.V5Hub.volunteerservice.controller;
 
 import com.V5Hub.volunteerservice.model.Activity;
+import com.V5Hub.volunteerservice.model.User;
 import com.V5Hub.volunteerservice.service.ActivityService;
+import com.V5Hub.volunteerservice.service.TagService;
+import com.V5Hub.volunteerservice.service.UserService;
 import com.V5Hub.volunteerservice.util.response.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,15 +19,19 @@ import java.util.*;
 @RestController
 public class ActivityController {
     private final ActivityService activityService;
+    private final UserService userService;
 
     @Autowired
-    public ActivityController(ActivityService activityService) {
+    public ActivityController(ActivityService activityService,
+                              UserService userService) {
         this.activityService = activityService;
+        this.userService = userService;
     }
 
     @RequestMapping(value = "/activities/recent", method = RequestMethod.GET)
     @ResponseBody
     public Result recent(@RequestParam(value = "openid", defaultValue = "") String openid) {
+        User user = userService.selectByOpenid(openid);
         Calendar date = new GregorianCalendar();
         date.setTime(new Date());
         date.add(Calendar.DATE, -6);
@@ -38,7 +45,7 @@ public class ActivityController {
             List<Activity> activityList = activityService.selectByDate(pre, date.getTime());
             List<HashMap<String, Object>> activities = new ArrayList<>();
             for (Activity activity : activityList) {
-                HashMap<String, Object> activityJson = activity.parseSimpleData();
+                HashMap<String, Object> activityJson = activityService.parseSimpleData(activity, user);
                 // TODO: 根据用户对tag的订阅情况对activity.tags做进一步处理
                 activities.add(activityJson);
             }

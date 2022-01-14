@@ -42,20 +42,18 @@ public interface SubscribeSponsorMapper {
             "ON s_user.user_id = user.id ")
     @Results({
             @Result(id = true, property = "id", column = "id"),
+            @Result(property = "openid", column = "openid"),
             @Result(property = "name", column = "name"),
-            @Result(property = "startTime", column = "start_time"),
-            @Result(property = "endTime", column = "end_time"),
-            @Result(property = "registerDeadline", column = "register_deadline"),
-            @Result(property = "position", column = "position"),
-            @Result(property = "level", column = "level"),
-            @Result(property = "managerId", column = "manager_id"),
-            @Result(property = "sponsor", column = "sponsor_id", one = @One(select = "com.V5Hub.volunteerservice.mapper.SponsorMapper.selectById", fetchType = FetchType.LAZY)),
-            @Result(property = "tags", column = "sponsor_id", many = @Many(select = "com.V5Hub.volunteerservice.mapper.ActivityTagMapper.selectByActivityId", fetchType = FetchType.LAZY)),
-            @Result(property = "description", column = "description"),
-            @Result(property = "content", column = "content"),
+            @Result(property = "studentId", column = "student_id"),
+            @Result(property = "email", column = "email"),
+            @Result(property = "phoneNumber", column = "phone_number"),
+            @Result(property = "password", column = "password"),
+            @Result(property = "college", column = "college"),
+            @Result(property = "subscribedTags", column = "id", many = @Many(select = "com.V5Hub.volunteerservice.mapper.SubscribeTagMapper.selectByUserId", fetchType = FetchType.LAZY)),
+            @Result(property = "deleted", column = "deleted"),
             @Result(property = "picture", column = "picture"),
-            @Result(property = "pictureHorizontal", column = "picture_horizontal"),
-            @Result(property = "stateType", column = "state_type"),
+            @Result(property = "registers", column = "id",
+                    many = @Many(select = "com.V5Hub.volunteerservice.mapper.RegisterMapper.selectByApplicantId", fetchType = FetchType.LAZY)),
     })
     List<User> selectBySponsorId(@Param("sponsor_id") int sponsor_id);
 

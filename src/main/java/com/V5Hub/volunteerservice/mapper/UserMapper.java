@@ -29,6 +29,7 @@ public interface UserMapper {
             @Result(property = "phoneNumber", column = "phone_number"),
             @Result(property = "password", column = "password"),
             @Result(property = "college", column = "college"),
+            @Result(property = "subscribedTags", column = "id", many = @Many(select = "com.V5Hub.volunteerservice.mapper.SubscribeTagMapper.selectByUserId", fetchType = FetchType.LAZY)),
             @Result(property = "deleted", column = "deleted"),
             @Result(property = "picture", column = "picture"),
     })
@@ -50,6 +51,7 @@ public interface UserMapper {
             @Result(property = "phoneNumber", column = "phone_number"),
             @Result(property = "password", column = "password"),
             @Result(property = "college", column = "college"),
+            @Result(property = "subscribedTags", column = "id", many = @Many(select = "com.V5Hub.volunteerservice.mapper.SubscribeTagMapper.selectByUserId", fetchType = FetchType.LAZY)),
             @Result(property = "deleted", column = "deleted"),
             @Result(property = "picture", column = "picture"),
     })
@@ -71,6 +73,7 @@ public interface UserMapper {
             @Result(property = "phoneNumber", column = "phone_number"),
             @Result(property = "password", column = "password"),
             @Result(property = "college", column = "college"),
+            @Result(property = "subscribedTags", column = "id", many = @Many(select = "com.V5Hub.volunteerservice.mapper.SubscribeTagMapper.selectByUserId", fetchType = FetchType.LAZY)),
             @Result(property = "deleted", column = "deleted"),
             @Result(property = "picture", column = "picture"),
     })
@@ -93,6 +96,7 @@ public interface UserMapper {
             @Result(property = "phoneNumber", column = "phone_number"),
             @Result(property = "password", column = "password"),
             @Result(property = "college", column = "college"),
+            @Result(property = "subscribedTags", column = "id", many = @Many(select = "com.V5Hub.volunteerservice.mapper.SubscribeTagMapper.selectByUserId", fetchType = FetchType.LAZY)),
             @Result(property = "deleted", column = "deleted"),
             @Result(property = "picture", column = "picture"),
             @Result(property = "registers", column = "id",
@@ -116,6 +120,7 @@ public interface UserMapper {
             @Result(property = "phoneNumber", column = "phone_number"),
             @Result(property = "password", column = "password"),
             @Result(property = "college", column = "college"),
+            @Result(property = "subscribedTags", column = "id", many = @Many(select = "com.V5Hub.volunteerservice.mapper.SubscribeTagMapper.selectByUserId", fetchType = FetchType.LAZY)),
             @Result(property = "deleted", column = "deleted"),
             @Result(property = "picture", column = "picture"),
             @Result(property = "registers", column = "id",

@@ -1,12 +1,12 @@
 package com.V5Hub.volunteerservice.service;
 
 import com.V5Hub.volunteerservice.model.Activity;
-import com.V5Hub.volunteerservice.model.Register;
-import org.apache.ibatis.annotations.*;
-import org.apache.ibatis.mapping.FetchType;
+import com.V5Hub.volunteerservice.model.User;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -74,4 +74,24 @@ public interface ActivityService {
      * @return int 更新活动数据的行数
      */
     int update(Activity activity);
+
+    /**
+     * 将活动初步转化为符合Http请求返回值要求的HashMap
+     * 如果user为null，则所有tag的subscribe均为false
+     *
+     * @param activity 活动对象
+     * @param user 用户对象，用于获取tag订阅情况
+     * @return 转换完成的HashMap，不含content项
+     */
+    HashMap<String, Object> parseSimpleData(Activity activity, @Nullable User user);
+
+    /**
+     * 将活动进一步转化为符合活动详情请求返回值要求的HashMap
+     * 如果user为null，则所有tag的subscribe均为false
+     *
+     * @param activity 活动对象
+     * @param user 用户对象，用于获取tag订阅情况
+     * @return 转换完成的HashMap，含content项
+     */
+    HashMap<String, Object> parseDetailsData(Activity activity, @Nullable User user);
 }

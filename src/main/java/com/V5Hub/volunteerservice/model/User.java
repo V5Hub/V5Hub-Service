@@ -43,6 +43,10 @@ public class User {
      */
     private String college;
     /**
+     * 用户订阅的tag
+     */
+    private List<Tag> subscribedTags;
+    /**
      * 用户是否已删除
      */
     private boolean deleted;
