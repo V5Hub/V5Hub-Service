@@ -25,9 +25,6 @@ public class ActivityServiceImpl implements ActivityService {
     @Autowired
     private ActivityMapper activityMapper;
 
-    @Autowired
-    private ActivityTagMapper activityTagMapper;
-
     @Override
     public List<Activity> selectAll() {
         return activityMapper.selectAll();
