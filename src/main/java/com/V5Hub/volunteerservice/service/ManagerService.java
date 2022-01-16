@@ -28,7 +28,7 @@ public interface ManagerService {
      * @param id 用户id
      * @return {@link List<Manager>} 数据库中所有manager
      */
-    Manager selectById(String id);
+    Manager selectById(int id);
 
 
     /**
@@ -37,7 +37,7 @@ public interface ManagerService {
      * @param id 用户id
      * @return int 删除的行数
      */
-    int deleteById(String id);
+    int deleteById(int id);
 
     /**
      * 插入一个用户信息到数据库

@@ -4,8 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -36,17 +36,21 @@ public class Activity {
      */
     private String position;
     /**
-     * 主办方名称
+     * 活动级别
      */
-    private String sponsorName;
+    private String level;
     /**
-     * 活动发起人
+     * 活动发起Manager的ID
      */
-    private User user;
+    private int managerId;
     /**
-     * 活动类型tag '-'连接
+     * 主办方组织
      */
-    private String tags;
+    private Sponsor sponsor;
+    /**
+     * 活动tag
+     */
+    private List<Tag> tags;
     /**
      * 活动简单描述
      */

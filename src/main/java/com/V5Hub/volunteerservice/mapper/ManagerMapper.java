@@ -23,8 +23,7 @@ public interface ManagerMapper {
     @Results({
             @Result(id = true, property = "id", column = "id",
                     one = @One(select = "com.V5Hub.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
-            @Result(property = "activities", column = "id",
-                    many = @Many(select = "com.V5Hub.volunteerservice.mapper.ActivityMapper.selectByManagerId", fetchType = FetchType.LAZY))
+            @Result(property = "deleted", column = "deleted")
     })
     List<Manager> selectAll();
 
@@ -38,10 +37,9 @@ public interface ManagerMapper {
     @Results({
             @Result(id = true, property = "id", column = "id",
                     one = @One(select = "com.V5Hub.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
-            @Result(property = "activities", column = "id",
-                    many = @Many(select = "com.V5Hub.volunteerservice.mapper.ActivityMapper.selectByManagerId", fetchType = FetchType.LAZY))
+            @Result(property = "deleted", column = "deleted")
     })
-    Manager selectById(@Param("id") String id);
+    Manager selectById(@Param("id") int id);
 
     /**
      * 把{@link Manager}对象插入到manager表中。
@@ -63,7 +61,7 @@ public interface ManagerMapper {
      * @return 成功从表中的删除的行的数目，若没有删除任何行，则返回0。
      */
     @Delete("DELETE FROM manager WHERE id = #{id}")
-    int deleteById(@Param("id") String id);
+    int deleteById(@Param("id") int id);
 
 //    /**
 //     * 根据{@link Manager}对象的值更新对应的manager表中的行。

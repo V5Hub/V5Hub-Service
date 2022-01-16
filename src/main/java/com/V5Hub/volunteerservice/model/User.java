@@ -13,7 +13,11 @@ public class User {
     /**
      * 唯一id
      */
-    private String id;
+    private int id;
+    /**
+     * openid
+     */
+    private String openid;
     /**
      * 姓名
      */
@@ -38,6 +42,10 @@ public class User {
      * 学院
      */
     private String college;
+    /**
+     * 用户订阅的tag
+     */
+    private List<Tag> subscribedTags;
     /**
      * 用户是否已删除
      */

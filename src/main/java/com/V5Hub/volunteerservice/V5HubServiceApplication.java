@@ -8,10 +8,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @Slf4j
 @SpringBootApplication
 @MapperScan("com/V5Hub/volunteerservice/mapper")
-public class V5VolunteerServiceApplication {
+public class V5HubServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(V5VolunteerServiceApplication.class, args);
+        SpringApplication.run(V5HubServiceApplication.class, args);
         log.info("\n----------------------------------------------------------\n\t" +
                 "Application  is running! Access URLs:\n\t" +
                 "Local访问网址: http://localhost:" + 8080 + "\n" +

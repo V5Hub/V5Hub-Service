@@ -19,7 +19,7 @@ public class Register {
     /**
      * 报名者
      */
-    private String userId;
+    private int userId;
     /**
      * 报名者姓名
      */

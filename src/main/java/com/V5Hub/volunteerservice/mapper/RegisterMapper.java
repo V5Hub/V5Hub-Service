@@ -76,7 +76,7 @@ public interface RegisterMapper{
             @Result(property = "college", column = "college"),
             @Result(property = "state", column = "state"),
     })
-    Register selectByUserIdActivityId(@Param("applicantId") String applicantId, @Param("activityId") int activityId);
+    Register selectByUserIdActivityId(@Param("applicantId") int applicantId, @Param("activityId") int activityId);
 
     /**
      * 查找用户id的所有报名表
@@ -96,7 +96,7 @@ public interface RegisterMapper{
             @Result(property = "college", column = "college"),
             @Result(property = "state", column = "state"),
     })
-    List<Register> selectByApplicantId(@Param("applicantId") String applicantId);
+    List<Register> selectByApplicantId(@Param("applicantId") int applicantId);
 
     /**
      * 把{@link Register}对象插入到register表中。
@@ -106,8 +106,8 @@ public interface RegisterMapper{
      */
     @Insert("<script>"+
             "INSERT IGNORE INTO "+
-            "register(id, activity_id, applicant_id, name, student_id, email, phone_number, user_class, college, state) "+
-            "VALUES(#{id}, " +
+            "register(activity_id, applicant_id, name, student_id, email, phone_number, user_class, college, state) "+
+            "VALUES( " +
             "<if test='#{activity}==null'> NULL </if> <if test='#{activity}!=null'>#{activity.id}</if>, " +
             "#{userId}, " +
             "#{name}, " +
