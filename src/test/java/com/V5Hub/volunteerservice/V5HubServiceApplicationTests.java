@@ -37,7 +37,7 @@ public class V5HubServiceApplicationTests {
         List<User> userList = userMapper.selectAll();
         userList.forEach(System.out::println);
 
-        User user = new User(5,"5","test5","2020302020",
+        User user = new User(5,"5","test5","2020302020",null,
                 null,null,"test5",null,false,null,null);
         userMapper.insert(user);
         List<User> newUserList = userMapper.selectAll();
