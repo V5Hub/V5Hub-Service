@@ -32,16 +32,9 @@ public class LoginController {
         this.userService = userService;
     }
 
-
-    @RequestMapping("/example")
-    @ResponseBody
-    public Result example() {
-        return Result.success(userService.newUserLogin("1111"),200,"sucess");
-    }
-
     @RequestMapping("/login")
     @ResponseBody
-    public Result login(@RequestParam(value = "code", defaultValue = "") String code) {
+    public Result login(@RequestParam(name = "code", defaultValue = "") String code) {
         String openid = null;
         String session_key = null;
         String errcode = null;
@@ -83,7 +76,7 @@ public class LoginController {
                 User user = userService.newUserLogin(openid);
                 int count = userService.insert(user);
                 if (count >= 0) {
-                    return Result.success(user);
+                    return Result.success(user, 200, "new user");
                 } else {
                     return Result.fail(null, 5000, "login failed");
                 }
