@@ -11,6 +11,8 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/volunteer
     username: root
     password: admin
+  session:
+    store-type: none
 
 mybatis-plus:
   mapper-locations: classpath:mappers/*.xml

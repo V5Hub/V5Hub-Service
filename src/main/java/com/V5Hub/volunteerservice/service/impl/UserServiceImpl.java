@@ -1,7 +1,9 @@
 package com.V5Hub.volunteerservice.service.impl;
 
+import com.V5Hub.volunteerservice.mapper.RegisterMapper;
 import com.V5Hub.volunteerservice.mapper.SubscribeTagMapper;
 import com.V5Hub.volunteerservice.mapper.UserMapper;
+import com.V5Hub.volunteerservice.model.Register;
 import com.V5Hub.volunteerservice.model.User;
 import com.V5Hub.volunteerservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +17,14 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
+    private final UserMapper userMapper;
+    private final RegisterMapper registerMapper;
+
     @Autowired
-    private UserMapper userMapper;
+    public UserServiceImpl(UserMapper userMapper, RegisterMapper registerMapper){
+        this.userMapper = userMapper;
+        this.registerMapper = registerMapper;
+    }
 
     @Override
     public List<User> selectAll() {
@@ -41,6 +49,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User selectByOpenidWithRegisters(String openid) {
         return userMapper.selectByOpenidWithRegisters(openid);
+    }
+
+    @Override
+    public Register selectByUserIdActivityId(int userId, int activityId){
+        return registerMapper.selectByUserIdActivityId(userId, activityId);
     }
 
     @Override

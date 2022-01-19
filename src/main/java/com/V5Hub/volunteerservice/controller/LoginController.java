@@ -15,6 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import javax.servlet.http.HttpSession;
+
 
 /**
  * 登录Controller
@@ -34,7 +36,7 @@ public class LoginController {
 
     @RequestMapping("/login")
     @ResponseBody
-    public Result login(@RequestParam(name = "code", defaultValue = "") String code) {
+    public Result login(@RequestParam(value = "code", defaultValue = "") String code, HttpSession session) {
         String openid = null;
         String session_key = null;
         String errcode = null;
@@ -69,12 +71,15 @@ public class LoginController {
             }
         }
         try {
+            User user = userService.selectByOpenid(openid);
             if (openid == null || session_key == null) {
                 return Result.fail(null, 5000, "login failed");
             }
-            else if (userService.selectByOpenid(openid) == null) {
-                User user = userService.newUserLogin(openid);
+            else if (user == null) {
                 int count = userService.insert(user);
+                session.setAttribute("openid", openid);
+                session.setAttribute("session_key", session_key);
+                session.setAttribute("user", user);
                 if (count >= 0) {
                     return Result.success(user, 200, "new user");
                 } else {
@@ -82,7 +87,9 @@ public class LoginController {
                 }
             }
             else {
-                return Result.success(userService.selectByOpenid(openid));
+                user.setPassword("");
+                session.setAttribute("user", user);
+                return Result.success(user);
             }
         } catch (Exception e) {
             return Result.fail(null, 6000, e.getMessage());

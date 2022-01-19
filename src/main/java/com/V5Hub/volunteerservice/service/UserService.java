@@ -1,5 +1,6 @@
 package com.V5Hub.volunteerservice.service;
 
+import com.V5Hub.volunteerservice.model.Register;
 import com.V5Hub.volunteerservice.model.User;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -54,6 +55,15 @@ public interface UserService{
      * @return {@link User} 数据库中对应openid的user包含该user所有register
      */
     User selectByOpenidWithRegisters(String openid);
+
+    /**
+     * 根据用户openid获取用户类
+     *
+     * @param userId 用户id
+     * @param activityId 活动id
+     * @return {@link User} 数据库中对应openid的user包含该user所有register
+     */
+    Register selectByUserIdActivityId(int userId, int activityId);
 
     /**
      * 根据用户id删除数据库user表该行
