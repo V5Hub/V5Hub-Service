@@ -1,6 +1,6 @@
 spring:
   flyway:
-    url: jdbc:mysql://127.0.0.1:3306/volunteer?serverTimezone=UTC&useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/volunteer?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
     user: root
     password: admin
     encoding: UTF-8
