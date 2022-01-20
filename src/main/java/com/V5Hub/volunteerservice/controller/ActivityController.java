@@ -34,6 +34,10 @@ public class ActivityController {
         User user = userService.selectByOpenid(openid);
         Calendar date = new GregorianCalendar();
         date.setTime(new Date());
+        date.set(Calendar.HOUR_OF_DAY, 0);
+        date.set(Calendar.MINUTE, 0);
+        date.set(Calendar.SECOND, 0);
+        date.set(Calendar.MILLISECOND, 0);
         date.add(Calendar.DATE, -6);
         ArrayList<HashMap<String, Object>> data = new ArrayList<>();
         for (int i = -6; i <= 21; i++) {

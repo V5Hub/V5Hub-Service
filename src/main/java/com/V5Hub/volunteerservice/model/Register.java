@@ -11,7 +11,7 @@ public class Register {
     /**
      * 唯一id
      */
-    private int id;
+    private Integer id;
     /**
      * 活动
      */

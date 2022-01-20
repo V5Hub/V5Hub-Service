@@ -21,7 +21,7 @@ public interface ManagerMapper {
      */
     @Select("SELECT * FROM manager")
     @Results({
-            @Result(id = true, property = "id", column = "id",
+            @Result(id = true, property = "user", column = "id",
                     one = @One(select = "com.V5Hub.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
             @Result(property = "deleted", column = "deleted")
     })
@@ -35,7 +35,7 @@ public interface ManagerMapper {
      */
     @Select("SELECT * FROM manager WHERE id = #{id}")
     @Results({
-            @Result(id = true, property = "id", column = "id",
+            @Result(id = true, property = "user", column = "id",
                     one = @One(select = "com.V5Hub.volunteerservice.mapper.UserMapper.selectById", fetchType = FetchType.LAZY)),
             @Result(property = "deleted", column = "deleted")
     })
@@ -49,8 +49,8 @@ public interface ManagerMapper {
      */
     @Insert("<script>" +
             "INSERT IGNORE INTO "+
-            "manager(id) "+
-            "VALUES(<if test='#{user}==null'> NULL </if> <if test='#{user}!=null'>#{user.id}</if>)" +
+            "manager(id,deleted) "+
+            "VALUES(<if test='#{user}==null'> NULL </if> <if test='#{user}!=null'>#{user.id}</if>, false)" +
             "</script>")
     int insert(Manager manager);
 
